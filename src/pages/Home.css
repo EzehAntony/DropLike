@@ -1,0 +1,32 @@
+.home {
+  background-color: white;
+  width: 100%;
+  min-height: 100vh;
+  padding: 0 5%;
+  max-width: 2000px;
+}
+
+.home header {
+  height: 80px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home .logo {
+  width: 40px;
+  position: absolute;
+  left: 5%;
+  background-color: rebeccapurple;
+  padding: 5px;
+}
+
+.home .main {
+  background-color:transparent;
+  margin: 20px 0;
+  padding: 10px;
+  display: flex;
+  justify-content: space-around;
+  border-radius: 10px;
+  
+}
