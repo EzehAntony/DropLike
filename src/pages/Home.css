@@ -1,5 +1,5 @@
 .home {
-  background-color: white;
+  background-color: #0e0e10;
   width: 100%;
   min-height: 100vh;
   padding: 0 5%;
@@ -17,16 +17,13 @@
   width: 40px;
   position: absolute;
   left: 5%;
-  background-color: rebeccapurple;
-  padding: 5px;
 }
 
 .home .main {
-  background-color:transparent;
+  background-color: transparent;
   margin: 20px 0;
   padding: 10px;
   display: flex;
   justify-content: space-around;
   border-radius: 10px;
-  
 }

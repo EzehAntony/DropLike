@@ -14,7 +14,7 @@
 
 .register form {
   width: 400px;
-  height: 500px;
+  min-height: 420px;
   background-color: #1C1D21;
   margin-top: 20px;
   border-radius: 20px;

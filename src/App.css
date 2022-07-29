@@ -1,6 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Roboto Mono', monospace;
+}
+
 .App {
   text-align: center;
-  
+  max-width: 2000px;
+  min-width: 300px;
 }
 
 body {
