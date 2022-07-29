@@ -3,23 +3,28 @@ import "./Start.css";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useEffect } from "react";
 
 function Start() {
   document.title = "DropLike Welcome!";
   const navigate = useNavigate();
 
-  const signUp = (e) => {
-    e.preventDefault();
-    toast.success("Welcome", {
-      theme: "colored",
-      closeButton: false,
-      hideProgressBar: true,
-      onClose: () => {
-        navigate("/register");
+
+  useEffect(() => {
+    toast.success(
+      "Welcome",
+      {
+        theme: "colored",
+        closeButton: false,
+        hideProgressBar: true,
+        onClose: () => {
+          navigate("/register");
+        },
+        autoClose: 2000,
       },
-      autoClose: 2000,
-    });
-  };
+      []
+    );
+  });
 
   return (
     <div className="start">
@@ -28,7 +33,6 @@ function Start() {
         <h3>
           Welcome to <span>DropLike</span>
         </h3>
-        <button onClick={signUp}>Sign Up</button>
       </div>
       <ToastContainer />
     </div>
