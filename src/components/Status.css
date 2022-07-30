@@ -1,0 +1,11 @@
+.status {
+    border: 2px solid #e3229e;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 10px;
+    
+}

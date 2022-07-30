@@ -1,0 +1,93 @@
+.chats {
+  background-color: #0e0e10;
+  width: 100%;
+  min-height: 100vh;
+  color: white;
+  overflow-x: hidden;
+
+}
+
+.chats .header {
+  width: 100%;
+  min-height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chats .logo {
+  width: 40px;
+  margin-right: 20px;
+}
+
+.chats .left {
+  width: 80%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.chats .add {
+  width: 40px;
+}
+
+.chats .searchCont {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+  align-items: center;
+}
+
+.chats .searchInner {
+  width: 90%;
+  height: 60px;
+  max-width: 900px;
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  position: relative;
+}
+
+.chats .search {
+  height: 60px;
+  width: 100%;
+  border-radius: 20px;
+  background-color: #151718;
+  color: white;
+  border: 0;
+  outline: none;
+  padding: 0 20px 0 50px;
+  cursor: pointer;
+}
+
+.chats .searchImg {
+  width: 30px;
+  position: absolute;
+  left: 10px;
+}
+
+.chats .main {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+}
+
+.chats .mainInner {
+  width: 90%;
+  max-width: 900px;
+  padding: 10px;
+  display: flex;
+  justify-self: center;
+  align-items: center;
+  position: relative;
+  border-radius: 20px;
+  cursor: pointer;
+}
+
+@media (max-width: 801px) {
+  .chats .searchInner {
+    max-width: 500px;
+  }
+}

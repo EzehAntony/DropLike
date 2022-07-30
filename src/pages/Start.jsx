@@ -16,7 +16,6 @@ function Start() {
       {
         theme: "colored",
         closeButton: false,
-        hideProgressBar: true,
         onClose: () => {
           navigate("/register");
         },

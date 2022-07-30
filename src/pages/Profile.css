@@ -8,6 +8,7 @@
 .profile header {
   background-color: #0e0e10;
   height: 50vh;
+  min-height: 300px;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -79,14 +80,14 @@
 }
 
 .profile .follow {
-  padding: 20px 40px;
+  padding: 15px 40px;
   border-radius: 20px;
   background-color: #e3229e;
   box-shadow: 2px 2px 20px #e3229f94;
 }
 
 .profile .message {
-  padding: 20px 40px;
+  padding: 15px 40px;
   border-radius: 20px;
   background-color: #1c1d21;
 }
@@ -99,8 +100,9 @@
 }
 
 .profile .links {
+  width: 100%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: center;
   align-items: center;
   padding: 0 10%;
   margin: 10px 0;
@@ -109,6 +111,9 @@
   min-width: 300px;
 }
 
+.profile .links p {
+  margin: 0 7% 0 0;
+}
 .profile .links p:hover {
   color: #e3229e;
 }
@@ -117,17 +122,14 @@
   width: 100%;
   display: flex;
   justify-content: center;
-
 }
 
 .profile .changeable .inner {
   width: 80%;
   background-color: #1c1d21;
-  min-height: 60vh;
+  min-height: 500px;
   border-radius: 20px;
   margin: 20px 0;
-
-
 }
 
 @media (max-width: 801px) {
@@ -138,5 +140,10 @@
 
   .profile .buttonContainer {
     width: 90%;
+  }
+
+  .profile .changeable .inner {
+    width: 90%;
+    max-width: none;
   }
 }
