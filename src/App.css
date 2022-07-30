@@ -14,7 +14,16 @@
   min-width: 300px;
 }
 
-body {
+body::-webkit-scrollbar {
+  width: 10px;
+}
+
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px black;
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: black;
 }
 
 .App-logo {

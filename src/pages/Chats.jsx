@@ -3,6 +3,7 @@ import Status from "../components/Status";
 import "./Chats.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
+import ChatText from "../components/ChatText";
 
 function Chats() {
   return (
@@ -30,22 +31,61 @@ function Chats() {
 
       <div className="main">
         <div className="mainInner">
-          <Swiper
-            spaceBetween={50}
-            slidesPerView={4}
-
-          >
-            <SwiperSlide><Status /></SwiperSlide>
-            <SwiperSlide><Status /></SwiperSlide>
-            <SwiperSlide><Status /></SwiperSlide>
-            <SwiperSlide><Status /></SwiperSlide>
-            <SwiperSlide><Status /></SwiperSlide>
-            <SwiperSlide><Status /></SwiperSlide>
-            <SwiperSlide><Status /></SwiperSlide>
-            <SwiperSlide><Status /></SwiperSlide>
-            <SwiperSlide><Status /></SwiperSlide>
-            ...
-          </Swiper>
+          <div className="slider">
+            <Swiper spaceBetween={50} slidesPerView={4}>
+              <SwiperSlide>
+                <Status />
+              </SwiperSlide>
+              <SwiperSlide>
+                <Status />
+              </SwiperSlide>
+              <SwiperSlide>
+                <Status />
+              </SwiperSlide>
+              <SwiperSlide>
+                <Status />
+              </SwiperSlide>
+              <SwiperSlide>
+                <Status />
+              </SwiperSlide>
+              <SwiperSlide>
+                <Status />
+              </SwiperSlide>
+              <SwiperSlide>
+                <Status />
+              </SwiperSlide>
+              <SwiperSlide>
+                <Status />
+              </SwiperSlide>
+              <SwiperSlide>
+                <Status />
+              </SwiperSlide>
+              ...
+            </Swiper>
+          </div>
+          <div className="messages">
+            <ChatText />
+            <ChatText />
+            <ChatText />
+            <ChatText />
+            <ChatText />
+            <ChatText />
+            <ChatText />
+            <ChatText />
+            <ChatText />
+            <ChatText />
+            <ChatText />
+            <ChatText />
+            <ChatText />
+            <ChatText />
+            <ChatText />
+            <ChatText />
+            <ChatText />
+            <ChatText />
+            <ChatText />
+            <ChatText />
+            <ChatText />
+          </div>
         </div>
       </div>
     </div>

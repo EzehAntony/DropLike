@@ -1,8 +1,8 @@
 .status {
     border: 2px solid #e3229e;
-    height: 100px;
-    width: 100px;
-    border-radius: 50%;
+    height: 70px;
+    width: 70px;
+    border-radius: 20px;
     display: flex;
     justify-content: center;
     align-items: center;
