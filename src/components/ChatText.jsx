@@ -5,7 +5,7 @@ function ChatText() {
   return (
     <div className="chatText">
       <div className="left">
-      <div className="circle"></div>
+      <img className="circle" src="/girl.jpg" alt="" />
       </div>
 
       <div className="right">

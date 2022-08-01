@@ -4,6 +4,9 @@
   min-height: 100vh;
   color: white;
   overflow-x: hidden;
+  user-select: none;
+  -moz-user-select: none;
+  -webkit-touch-callout: none;
 }
 
 .chats .header {
@@ -57,7 +60,7 @@
   border: 0;
   outline: none;
   padding: 0 20px 0 50px;
-  cursor: pointer;
+  cursor: text;
 }
 
 .chats .searchImg {

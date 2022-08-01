@@ -1,10 +1,16 @@
+//React Imports
 import React from "react";
 import { useState } from "react";
 import "./Register.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useEffect } from "react";
+
+//Toast imports
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+//axios
+import axios from "axios";
 
 function Register() {
   document.title = "DropLike Register";
@@ -23,19 +29,38 @@ function Register() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [serverResponse, setServerResponse] = useState("");
+  const navigate = useNavigate();
 
-  const submit = (e) => {
+  const submit = async (e) => {
     e.preventDefault();
-
-    toast.success(
-      `Hi, ${firstName} your username will be saved as ${username} and users can now find you with that as your ID.  Your password is ${password}.`,
-      {
-        hideProgressBar: true,
+    try {
+      await axios({
+        url: "https://droplikebackend.herokuapp.com/api/auth/register",
+        method: "POST",
+        withCredentials: true,
+        body: {
+          firstname: firstName,
+          lasname: lastName,
+          username: username,
+          password: password,
+        },
+      }).then((res) => {
+        console.log(res);
+        toast.success(`Registered ${username}! You will now be logged in`, {
+          theme: "colored",
+          closeButton: false,
+          autoClose: 5000,
+          onClose: () => {
+            navigate("/home");
+          },
+        });
+      });
+    } catch (error) {
+      toast.error(error.message, {
         theme: "colored",
-        closeButton: false,
-        autoClose: 5000,
-      }
-    );
+        autoClose: 3000,
+      });
+    }
   };
   return (
     <div className="register">

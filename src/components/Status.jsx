@@ -2,7 +2,9 @@ import React from "react";
 import "./Status.css";
 
 function Status() {
-  return <div className="status">f</div>;
+  return (
+    <img className="status" src="/hennesy.jpg" alt="" />
+  );
 }
 
 export default Status;

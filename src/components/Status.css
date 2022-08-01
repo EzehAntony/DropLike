@@ -1,11 +1,11 @@
 .status {
-    border: 2px solid #e3229e;
-    height: 70px;
-    width: 70px;
-    border-radius: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0 10px;
-    
+  border: 2px solid #e3229e;
+  word-break: break-all;
+  height: 90px;
+  width: 90px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 10px;
 }
