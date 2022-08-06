@@ -9,9 +9,8 @@ function Start() {
   document.title = "DropLike Welcome!";
   const navigate = useNavigate();
 
-
   useEffect(() => {
-    toast.success(
+    toast.info(
       "Welcome",
       {
         theme: "colored",
@@ -20,6 +19,7 @@ function Start() {
           navigate("/register");
         },
         autoClose: 2000,
+        icon: ""
       },
       []
     );

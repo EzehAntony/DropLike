@@ -1,11 +1,11 @@
 import React from "react";
+import Footer from "../components/Footer";
 import "./Profile.css";
 
 function Profile() {
   return (
     <div className="profile">
       <header>
-
         <div className="profileRing">
           <div className="profileImg"></div>
         </div>
@@ -28,9 +28,9 @@ function Profile() {
         </div>
 
         <div className="buttonContainer">
-            <button className="follow">Follow</button>
-            <button className="message">Message</button>
-            <img src="/add.svg" className="suggested" alt="" />
+          <button className="follow">Follow</button>
+          <button className="message">Message</button>
+          <img src="/add.svg" className="suggested" alt="" />
         </div>
       </header>
 
@@ -41,13 +41,9 @@ function Profile() {
         <p className="tagged">Tagged</p>
       </div>
 
-      <div className="changeable">
-        <div className="inner">
-          
-        </div>
-      </div>
+        <div className="inner">nn</div>
 
-      
+      <Footer />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import "./Chats.css";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import ChatText from "../components/ChatText";
+import Footer from "../components/Footer";
 
 function Chats() {
   return (
@@ -86,6 +87,8 @@ function Chats() {
             <ChatText />
             <ChatText />
           </div>
+
+          <Footer />
         </div>
       </div>
     </div>

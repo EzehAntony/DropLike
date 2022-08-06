@@ -4,11 +4,9 @@ import "./Post.css";
 function Post() {
   return (
     <div className="post">
-      <header>
+      <header className="post-header">
         <div className="userImage"></div>
-        <div className="containerii">
-          <div className="username">crayonne.io</div>
-        </div>
+        <div className="username">crayonne.io</div>
       </header>
       <div className="mainSection">
         <div className="caption">

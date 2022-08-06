@@ -1,9 +1,7 @@
 //React Imports
-import React from "react";
-import { useState } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./Register.css";
 import { Link, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
 
 //Toast imports
 import { ToastContainer, toast } from "react-toastify";
@@ -12,17 +10,11 @@ import "react-toastify/dist/ReactToastify.css";
 //axios
 import axios from "axios";
 
+import { UserContext } from "../UserContext";
+
 function Register() {
   document.title = "DropLike Register";
-
-  useEffect(() => {
-    toast.success("Register", {
-      theme: "colored",
-      autoClose: 2000,
-      hideProgressBar: true,
-      closeButton: false,
-    });
-  }, []);
+  const { user, setUser } = useContext(UserContext);
 
   const [firstName, setFirstname] = useState("");
   const [lastName, setLastName] = useState("");
@@ -34,41 +26,62 @@ function Register() {
   const submit = async (e) => {
     e.preventDefault();
     try {
+      toast.loading("Loading", {
+        toastId: "register",
+        type: "info",
+      });
       await axios({
         url: "https://droplikebackend.herokuapp.com/api/auth/register",
         method: "POST",
         withCredentials: true,
-        body: {
+        data: {
           firstname: firstName,
-          lasname: lastName,
+          lastname: lastName,
           username: username,
           password: password,
         },
       }).then((res) => {
-        console.log(res);
-        toast.success(`Registered ${username}! You will now be logged in`, {
+        setUser(res.data);
+        toast.update("register", {
+          render: "Registered",
+          type: "success",
+          isLoading: false,
           theme: "colored",
-          closeButton: false,
-          autoClose: 5000,
+          autoClose: 3000,
           onClose: () => {
-            navigate("/home");
+            navigate("/login");
           },
         });
+
+        setUser(res.data);
       });
     } catch (error) {
-      toast.error(error.message, {
+      let message = "";
+      if (error.response.data) {
+        message = error.response.data;
+      } else {
+        message = "error";
+      }
+      toast.update("register", {
+        render: `${message}`,
         theme: "colored",
+        type: "error",
         autoClose: 3000,
+        isLoading: false,
       });
     }
   };
+
   return (
     <div className="register">
       <img src="/logo4.png" alt="" />
+
       <form onSubmit={submit}>
         <input
           type="text"
           placeholder="firstname"
+          maxLength={20}
+          minLength={5}
           value={firstName}
           onChange={(e) => setFirstname(e.target.value)}
           required={true}
@@ -77,22 +90,30 @@ function Register() {
           type="text"
           placeholder="lastname"
           value={lastName}
+          maxLength={20}
+          minLength={5}
           onChange={(e) => setLastName(e.target.value)}
           required={true}
         />
         <input
           type="text"
           placeholder="username"
+          autoSave="true"
           value={username}
+          minLength={5}
+          maxLength={20}
           onChange={(e) => setUsername(e.target.value)}
           required={true}
         />
 
         <input
           type="password"
+          autoSave="true"
           placeholder="password"
           value={password}
+          minLength={5}
           onChange={(e) => setPassword(e.target.value)}
+          maxLength={15}
           required={true}
         />
 

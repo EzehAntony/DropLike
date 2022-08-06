@@ -1,58 +1,63 @@
-import React from "react";
+import React, { useContext, useEffect } from "react";
 import { useState } from "react";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useEffect } from "react";
+import { UserContext } from "../UserContext";
 
 function Login() {
   document.title = "DropLike Login";
+  const { user, setUser } = useContext(UserContext);
 
-  useEffect(() => {
-    toast.success("Login", {
-      hideProgressBar: true,
-      theme: "colored",
-      closeButton: false,
-      autoClose: 2000,
-    });
-  }, []);
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [serverResponse, setServerResponse] = useState("");
 
   const submit = async (e) => {
     e.preventDefault();
     try {
+      toast.loading("logging in...", {
+        theme: "colored",
+        type: "info",
+        toastId: "login",
+      });
+      console.log(username, password);
       await axios({
         url: "https://droplikebackend.herokuapp.com/api/auth/login",
         method: "POST",
         withCredentials: true,
-        body: {
+        data: {
           username: username,
           password: password,
         },
       }).then((res) => {
-        console.log(res);
-        toast.success(
-          `Successfully logged in as ${username}! You will now be redirected to the home page.`,
-          {
-            theme: "colored",
-            closeButton: false,
-            autoClose: 5000,
-            onClose: () => {
-              navigate("/home");
-            },
-          }
-        );
+        setUser(res.data);
+        toast.update("login", {
+          render: "Logged in",
+          theme: "colored",
+          autoClose: 2000,
+          isLoading: false,
+          type: "success",
+          onClose: () => {
+            navigate("/home");
+          },
+        });
       });
     } catch (error) {
-      toast.error(error.message, {
-        theme: "colored",
+      let message = "";
+      if (error.response.data) {
+        message = error.response.data;
+      } else {
+        message = error.message;
+      }
+      toast.update("login", {
+        render: `${message}`,
+        type: "error",
         autoClose: 3000,
+        isLoading: false,
       });
     }
   };
@@ -61,6 +66,7 @@ function Login() {
       <img src="/logo4.png" alt="" />
       <form onSubmit={submit}>
         <input
+          autoComplete="true"
           type="text"
           placeholder="username"
           value={username}
@@ -69,12 +75,12 @@ function Login() {
         />
         <input
           type="text"
+          autoComplete="true"
           placeholder="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required={true}
         />
-        ' <p>{serverResponse}</p>
         <button type="submit">Log In</button>
         <h3>
           Don't have an account? <Link to="/register">Register</Link>
