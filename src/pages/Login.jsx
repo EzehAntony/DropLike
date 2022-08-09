@@ -18,7 +18,7 @@ const Login = () => {
   const user = userStore((state) => state.registeredUser[0]);
   const clearUser = userStore((state) => state.addRegisteredUser);
   useEffect(() => {
-    if (user) {
+    if (user.length !== 0) {
       autoLogin();
     } else {
     }
@@ -116,7 +116,7 @@ const Login = () => {
   return (
     <div className="login">
       <img src="/logo4.png" alt="" />
-      {!user && (
+      {user.length == 0 && (
         <form onSubmit={submit}>
           <input
             autoComplete="true"
@@ -140,7 +140,7 @@ const Login = () => {
           </h3>
         </form>
       )}
-      {user && (
+      {user.length !== 0 && (
         <form className="formTwo">
           <p>Automatic Login detected wait for redirection</p>
         </form>
