@@ -16,6 +16,7 @@ const Login = () => {
 
   const addUser = userStore((state) => state.addUser);
   const user = userStore((state) => state.registeredUser[0]);
+  const clearUser = userStore((state) => state.addRegisteredUser);
   useEffect(() => {
     if (user) {
       autoLogin();
@@ -39,6 +40,7 @@ const Login = () => {
           password: user.password,
         },
       }).then((res) => {
+        clearUser([]);
         addUser(res.data);
         toast.update("login", {
           render: "Logged in",
