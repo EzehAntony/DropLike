@@ -18,7 +18,6 @@ import userStore from "./User";
 
 const App = () => {
   const user = userStore((state) => state.user[0]);
-  console.log(user)
   return (
     <Router>
       <div className="App">
