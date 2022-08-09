@@ -2,8 +2,6 @@
   background-color: #0e0e10;
   min-height: 100vh;
   width: 100%;
-  padding: 20px 0;
-  width: 100%;
   padding: 20px 5%;
   max-width: 2000px;
   min-width: 300px;
@@ -13,10 +11,10 @@
   justify-self: center;
 }
 
-.profile header {
+.profile > header {
   background-color: #0e0e10;
-  height: 50vh;
   min-height: 300px;
+  padding: 30px 0 0 0;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -26,10 +24,21 @@
 
 .profile .profileRing {
   border-radius: 50%;
-  border: 2px solid #e3229e;
+  border: 2px solid #0092c6;
   display: flex;
   justify-content: center;
   align-items: center;
+  animation: animate 1.6s infinite alternate;
+  position: absolute;
+  top: 50px;
+}
+
+@keyframes animate {
+  from {
+  }
+  to {
+    padding: 5px;
+  }
 }
 
 .profile .profileImg {
@@ -41,6 +50,7 @@
 }
 
 .profile .profileName {
+  margin: 130px 0 0 0;
   color: white;
   padding: 5px;
   font-size: 20px;
@@ -52,10 +62,11 @@
   color: #63656d;
   font-weight: 500;
   text-transform: capitalize;
+  font-size: 13px;
 }
 
 .profile .profileNumbers {
-  max-width: 500px;
+  max-width: 400px;
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -69,14 +80,16 @@
 .profile .profileNumbers span {
   color: #63656d;
   font-weight: 700;
-  font-size: 15px;
+  font-size: 13px;
 }
 
 .profile .buttonContainer {
   display: flex;
   justify-content: space-evenly;
   align-items: center;
-  width: 500px;
+  width: 100%;
+  max-width: 300px;
+  margin: 0 0 20px 0;
   padding: 10px;
 }
 
@@ -85,29 +98,33 @@
   color: white;
   cursor: pointer;
   font-weight: 700;
+  margin: 0 10px;
+  transition: 0.4s;
+}
+
+.profile .buttonContainer button:hover {
+  color: black;
 }
 
 .profile .follow {
-  padding: 15px 40px;
+  padding: 10px 30px;
   border-radius: 20px;
   background-color: #e3229e;
-  box-shadow: 2px 2px 20px #e3229f94;
 }
 
 .profile .message {
-  padding: 15px 40px;
+  padding: 10px 30px;
   border-radius: 20px;
-  background-color: #1c1d21;
+  background-color: #0092c6;
 }
 
-.profile .suggested {
-  width: 50px;
-  height: 50px;
+.profile > .suggested {
+  width: 40px;
   border-radius: 50%;
-  background-color: #1c1d21;
+  background-color: #63656d;
 }
 
-.profile .links {
+.profile > .links {
   width: 100%;
   display: flex;
   justify-content: center;
@@ -119,26 +136,32 @@
   min-width: 300px;
 }
 
-.profile .links p {
-  margin: 0 7% 0 0;
+.profile > .links p {
+  padding: 5px 10px;
+  border-radius: 20px;
+  background-color: #33393b;
+  margin: 0 10px;
+  font-size: 13px;
 }
 .profile .links p:hover {
-  color: #e3229e;
+  color: black;
+  transition: 0.4s;
 }
 
-.profile .inner {
-  width: 90%;
+.profile > .inner {
   display: flex;
-  background-color: #242424;
+  align-items: center;
+  flex-direction: column;
   min-height: 400px;
-  justify-content: center;
-  max-width: 900px;
-  margin: 5px  0 0 0;
-  border-radius: 20px;
+  margin: 20px 0;
 }
 
-
-
+hr {
+  width: 100%;
+  max-width: 900px;
+  margin-bottom: 40px;
+  border-color: #63656d;
+}
 @media (max-width: 801px) {
   .profile .profileNumbers {
     max-width: 100%;
@@ -147,10 +170,5 @@
 
   .profile .buttonContainer {
     width: 90%;
-  }
-
-  .profile .changeable .inner {
-    width: 90%;
-    max-width: none;
   }
 }

@@ -1,12 +1,14 @@
 import React from "react";
 import "./Post.css";
+import userStore from "../User";
 
 function Post() {
+  const user = userStore((state) => state.user[0]);
   return (
     <div className="post">
       <header className="post-header">
         <div className="userImage"></div>
-        <div className="username">crayonne.io</div>
+        <div className="username">@{user && user.username}</div>
       </header>
       <div className="mainSection">
         <div className="caption">

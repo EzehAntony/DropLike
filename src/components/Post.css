@@ -2,18 +2,19 @@
   width: 100%;
   min-height: 100px;
   border-radius: 10px;
-  margin: 5px 0;
   max-width: 900px;
   color: white;
   background-color: #151718;
+  padding: 20px 0 0 0;
+  margin-bottom: 10px;
 }
 
-.post .post-header {
+.post > .post-header {
   border-radius: 10px 10px 0 0;
   display: flex;
+  align-items: center;
   justify-content: flex-start;
-  padding:  0 5%;
-  
+  padding: 0 5%;
 }
 
 .post .userImage {
@@ -21,12 +22,14 @@
   width: 50px;
   height: 50px;
   background-color: #23242a;
+  border: 1px solid #0092c6;
 }
 
 .post .username {
   color: white;
   font-weight: 700;
   margin: 0 20px;
+  font-size: 14px;
   text-transform: capitalize;
 }
 
@@ -40,6 +43,7 @@
 
 .post .caption {
   padding: 5%;
+  font-size: 13px;
   text-align: left;
 }
 
@@ -69,15 +73,28 @@
 }
 
 .post p {
-  color: #5e478a;
+  color: white;
   border-radius: 10px;
   cursor: pointer;
-  font-size: 15px;
+  font-size: 13px;
+  padding: 10px 20px;
+  background-color: #0092c6;
   font-weight: 600;
   text-transform: capitalize;
+  transition: 0.4s;
 }
 
-@media (max-width: 1000px) {
+.post p:hover {
+  color: black;
+  background-color: #00698f;
+}
+
+@media (max-width: 900px) {
+  .post {
+    width: 100%;
+    min-height: 100px;
+    max-width: 900px;
+  }
   .post .image {
     width: 95%;
     border-radius: 10px;

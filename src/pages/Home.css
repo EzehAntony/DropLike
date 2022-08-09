@@ -1,15 +1,16 @@
 .home {
   background-color: #0e0e10;
   width: 100%;
-  min-height: 100vh;
+  min-height: 900px;
   padding: 20px 5%;
   max-width: 2000px;
+  max-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.home header {
+.home > header {
   max-width: 900px;
   min-height: 60px;
   border-radius: 10px;
@@ -22,35 +23,85 @@
 
 .home input {
   height: 50px;
-  width: 80%;
+  width: 75%;
   padding: 0 0 0 20px;
   border-radius: 50px;
-  background-color: #23242a;
+  background-color: #151718;
   border: 0;
   outline: none;
   color: white;
+  overflow-x: hidden;
+}
+
+.home input::placeholder {
+  color: rgb(160, 160, 160);
+}
+
+.homePost {
+  background-color: #e3229e;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 0;
 }
 
 .home .logo {
   width: 40px;
 }
 
+.home > .split {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
 .home-main {
+  width: 100%;
+  align-items: center;
   max-height: 100vh;
+  overflow-y: scroll;
+  width: 70%;
+}
+
+.home-other {
+  background-color: #151718;
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  max-height: 100vh;
+  min-height: 100vh;
+  margin: 0 10px;
+  padding: 10px;
   overflow-y: scroll;
 }
 
-.home .main {
+.home > .main {
   background-color: transparent;
-  margin: 20px 0;
-  padding: 10px;
+  margin: 20px 10px;
   display: flex;
   justify-content: space-around;
   border-radius: 10px;
 }
 
-@media (max-width: 1000px) {
+@media (max-width: 900px) {
   .home-main::-webkit-scrollbar {
     width: 0;
+  }
+
+  .home input {
+    width: 65%;
+  }
+
+  .home .split {
+    display: block;
+  }
+
+  .home-main {
+    width: 100%;
+  }
+
+  .home-other {
+    display: none;
   }
 }

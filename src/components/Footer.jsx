@@ -8,7 +8,7 @@ function Footer() {
       <Link to="/home">
         <img src="/box-white.svg" alt="" />
       </Link>
-      <Link to="/home">
+      <Link to="/search">
         <img src="/search.svg" alt="" />
       </Link>
       <Link to="/profile">

@@ -1,0 +1,35 @@
+.searchPage {
+  min-height: 100vh;
+  background-color: #0e0e10;
+  color: white;
+  display: flex;
+  padding: 20px 5%;
+  flex-direction: column;
+  align-items: center;
+}
+.searchPage > .searchContainer {
+  width: 100%;
+  max-width: 1000px;
+  padding: 10px;
+  background-color: #151718;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 10px;
+}
+
+.searchContainer > input {
+  height: 50px;
+  width: 95%;
+  padding: 0 0 0 20px;
+  border-radius: 50px;
+  background-color: #23242a;
+  border: 0;
+  outline: none;
+  margin: 10px 0;
+  color: white;
+}
+
+.searchContainer > input::placeholder {
+  color: rgb(160, 160, 160);
+}

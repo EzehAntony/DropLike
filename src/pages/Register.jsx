@@ -10,14 +10,11 @@ import "react-toastify/dist/ReactToastify.css";
 //axios
 import axios from "axios";
 
-import { UserContext } from "../UserContext";
-
 function Register() {
   document.title = "DropLike Register";
-  const { user, setUser } = useContext(UserContext);
 
   const [firstName, setFirstname] = useState("");
-  const [lastName, setLastName] = useState("");
+  const [lastName, setLastName] = useState("");  
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [serverResponse, setServerResponse] = useState("");
@@ -35,13 +32,12 @@ function Register() {
         method: "POST",
         withCredentials: true,
         data: {
-          firstname: firstName,
-          lastname: lastName,
-          username: username,
-          password: password,
+          firstname: firstName.toLowerCase(),
+          lastname: lastName.toLowerCase(),
+          username: username.toLowerCase(),
+          password: password.toLowerCase(),
         },
       }).then((res) => {
-        setUser(res.data);
         toast.update("register", {
           render: "Registered",
           type: "success",
@@ -52,8 +48,6 @@ function Register() {
             navigate("/login");
           },
         });
-
-        setUser(res.data);
       });
     } catch (error) {
       let message = "";

@@ -1,20 +1,36 @@
 import React, { useContext, useEffect } from "react";
 import { useState } from "react";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Login.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { UserContext } from "../UserContext";
+import userStore from "../User";
 
-function Login() {
+const Login = () => {
   document.title = "DropLike Login";
-  const { user, setUser } = useContext(UserContext);
-
   const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const addUser = userStore((state) => state.addUser);
+  const user = userStore((state) => state.user);
+
+  const helf = (e) => {
+    e.preventDefault();
+    addUser({
+      _id: "62eb470392306d95ed89d964",
+      firstname: "anthony",
+      lastname: "Ezeh",
+      username: "crayonne",
+      isAdmin: false,
+      followings: [],
+      followers: [],
+      profile: "",
+      bio: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Consequuntur illum autem id atque aliquam, magnam vero cupiditate labore beatae explicabo! Odit harum, incidunt modi ullam iusto expedita veritatis hic commodi.",
+    });
+  };
 
   const submit = async (e) => {
     e.preventDefault();
@@ -24,7 +40,6 @@ function Login() {
         type: "info",
         toastId: "login",
       });
-      console.log(username, password);
       await axios({
         url: "https://droplikebackend.herokuapp.com/api/auth/login",
         method: "POST",
@@ -34,7 +49,7 @@ function Login() {
           password: password,
         },
       }).then((res) => {
-        setUser(res.data);
+        addUser(res.data);
         toast.update("login", {
           render: "Logged in",
           theme: "colored",
@@ -87,10 +102,26 @@ function Login() {
         </h3>
         '
       </form>
+      <button onClick={helf}>Read my storage</button>
 
       <ToastContainer />
     </div>
   );
-}
+};
 
 export default Login;
+
+/* {
+  "_id": "62eb470392306d95ed89d964",
+  "firstname": "anthony",
+  "lastname": "Ezeh",
+  "username": "crayonne",
+  "isAdmin": false,
+  "followings": [],
+  "followers": [],
+  "profile": "",
+  "bio": "",
+  "createdAt": "2022-08-04T04:11:47.270Z",
+  "updatedAt": "2022-08-04T04:11:47.270Z",
+  "__v": 0
+}  */
