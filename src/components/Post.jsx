@@ -2,18 +2,20 @@ import React from "react";
 import "./Post.css";
 import userStore from "../User";
 
-function Post() {
-  const user = userStore((state) => state.user[0]);
+function Post({ data, loading }) {
   return (
     <div className="post">
       <header className="post-header">
         <div className="userImage"></div>
-        <div className="username">@{user && user.username}</div>
+        <div className="username">
+          @{data && data.username}
+          {loading && "fetching..."}
+        </div>
       </header>
       <div className="mainSection">
         <div className="caption">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Neque
-          consequatur, adipisci quae quis voluptatibus in.
+          {data && data.bio}
+          {loading && "fetching..."}
         </div>
         <div className="image"></div>
         <div className="action">

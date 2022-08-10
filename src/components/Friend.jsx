@@ -1,15 +1,25 @@
 import React from "react";
+import { Link, useParams } from "react-router-dom";
 import "./Friend.css";
+
+// user store
 import userStore from "../User";
 
-function Friend({style}) {
-  const user = userStore((state) => state.user[0]);
+function Friend({ style, data, loading }) {
+  //click function to redirect to profile of selected profile
+
   return (
-    <div className="friendContainer" style={style}>
+    <Link
+      to={`/profile/${data && data._id}`}
+      className="friendContainer"
+      style={style}
+    >
       <img src="/girl.jpg" className="profilePicture" alt="" />
-      <div className="username">{user && user.username} </div>
+      <div className="username">
+        {data && data.username} {loading && "freching..."} 
+      </div>
       <img src="/add.svg" className="add" alt="" />
-    </div>
+    </Link>
   );
 }
 

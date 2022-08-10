@@ -1,5 +1,5 @@
 .home {
-  background-color: #0e0e10;
+  background-color: var(--base);
   width: 100%;
   min-height: 900px;
   padding: 20px 5%;
@@ -26,10 +26,10 @@
   width: 75%;
   padding: 0 0 0 20px;
   border-radius: 50px;
-  background-color: #151718;
+  background-color: var(--base2);
   border: 0;
   outline: none;
-  color: white;
+  color: var(--white);
   overflow-x: hidden;
 }
 
@@ -38,7 +38,7 @@
 }
 
 .homePost {
-  background-color: #e3229e;
+  background-color: var(--pink);
   padding: 8px 10px;
   border-radius: 10px;
   border: 0;
@@ -56,14 +56,18 @@
 
 .home-main {
   width: 100%;
+  display: flex;
   align-items: center;
-  max-height: 100vh;
-  overflow-y: scroll;
+  justify-content: center;
+  max-height: 95vh; 
+  height: 95vh; 
+  overflow-y: auto;
   width: 70%;
+  color: var(--white);
 }
 
 .home-other {
-  background-color: #151718;
+  background-color: var(--base2);
   width: 300px;
   display: flex;
   flex-direction: column;

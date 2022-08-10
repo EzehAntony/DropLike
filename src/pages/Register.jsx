@@ -16,7 +16,7 @@ import userStore from "../User";
 function Register() {
   document.title = "DropLike Register";
 
-  //User store
+  //User store 
   const addUser = userStore((state) => state.addRegisteredUser);
 
   //Input state
@@ -24,8 +24,9 @@ function Register() {
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [serverResponse, setServerResponse] = useState("");
+  const [mode, setMode] = useState("dark")
   const navigate = useNavigate();
+
 
   //Form Submit function
   const submit = async (e) => {
@@ -76,6 +77,15 @@ function Register() {
     }
   };
 
+  const toggle = () => {
+    if(mode == "dark") {
+      setMode("Light");
+      //How to change root css in JavaScript.
+
+    }else {
+      setMode("dark")
+    }
+  }
   return (
     <div className="register">
       <img src="/logo4.png" alt="" />
@@ -121,7 +131,6 @@ function Register() {
           required={true}
         />
 
-        <p>{serverResponse}</p>
         <button type="submit" onSubmit={submit}>
           Sign Up
         </button>
@@ -129,6 +138,7 @@ function Register() {
           Already have an account? <Link to="/login">login</Link>
         </h3>
       </form>
+      <button onClick={toggle}>{mode} mode</button>
       <ToastContainer />
     </div>
   );

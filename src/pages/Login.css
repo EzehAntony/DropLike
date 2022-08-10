@@ -1,7 +1,7 @@
 .login {
   min-height: 100vh;
   width: 100%;
-  background-color: #0e0e10;
+  background-color: var(--base);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,7 +16,7 @@
 .login form {
   width: 400px;
   min-height: 420px;
-  background-color: #1c1d21;
+  background-color: var(--base2);
   margin-top: 20px;
   border-radius: 20px;
   display: flex;
@@ -30,11 +30,11 @@
   width: 80%;
   margin: 5px;
   padding: 0 10px;
-  background-color: #151718;
+  background-color: var(--base3);
   border: 0;
   border-radius: 10px;
-  outline-color: #e3229e;
-  color: white;
+  outline-color: var(--pink);
+  color:  var(--white);
   transition: 0.2s;
 }
 
@@ -42,36 +42,36 @@
   box-shadow: 2px 2px 5px e3229f42;
 }
 .login form input::placeholder {
-  color: white;
+  color:  var(--white);
   text-transform: capitalize;
 }
 
 .login form p {
-  color: #5e478a;
+  color: var(--blue);
   font-size: 15px;
   margin: 5px;
   text-transform: capitalize;
 }
 
 .login form button {
-  background-color: #e3229e;
+  background-color: var(--pink)  ;
   padding: 15px 60px;
   border: 0;
   cursor: pointer;
   margin: 10px 0;
-  color: white;
+  color:  var(--white);
   border-radius: 15px;
 }
 
 .login h3 {
   font-size: 14px;
   margin: 10px;
-  color: white;
+  color:  var(--white);
 }
 
 .login a {
   text-decoration: none;
-  color: #0092c6;
+  color: var(--blue);
 }
 
 .login .formTwo {
@@ -81,7 +81,7 @@
 }
 
 .login .formTwo p {
-  color: white;
+  color:  var(--white);
   font-weight: 600;
 }
 

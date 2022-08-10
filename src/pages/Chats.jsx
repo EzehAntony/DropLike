@@ -31,39 +31,39 @@ function Chats() {
       </div>
 
       <div className="main">
+        <div className="slider">
+          <Swiper spaceBetween={50} slidesPerView={4}>
+            <SwiperSlide>
+              <Status />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Status />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Status />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Status />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Status />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Status />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Status />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Status />
+            </SwiperSlide>
+            <SwiperSlide>
+              <Status />
+            </SwiperSlide>
+            ...
+          </Swiper>
+        </div>
         <div className="mainInner">
-          <div className="slider">
-            <Swiper spaceBetween={50} slidesPerView={4}>
-              <SwiperSlide>
-                <Status />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Status />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Status />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Status />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Status />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Status />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Status />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Status />
-              </SwiperSlide>
-              <SwiperSlide>
-                <Status />
-              </SwiperSlide>
-              ...
-            </Swiper>
-          </div>
           <div className="messages">
             <ChatText />
             <ChatText />

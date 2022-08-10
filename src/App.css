@@ -10,16 +10,25 @@
   -webkit-tap-highlight-color: transparent;
   -webkit-user-select: none;
   -khtml-user-select: none;
-  -ms-user-select: none; 
+  -ms-user-select: none;
 }
 
+:root {
+  --base: #0e0e10;
+  --base2: #151718;
+  --base3: #292a2e;
+  --base4: #63656d;
+  --pink: #e3229e;
+  --blue: #0092c6;
+  --white: #fff;
+  --black: #000;
+}
 
 .App {
   text-align: center;
   max-width: 2000px;
   min-width: 300px;
-  background-color: #0E0E10;
-
+  background-color: var(--base);
 }
 
 *::-webkit-scrollbar {
@@ -32,7 +41,7 @@
 }
 
 *::-webkit-scrollbar-thumb {
-  background-color: #23242A;
+  background-color: var(--base);
 }
 
 .App-logo {
@@ -47,7 +56,7 @@
 }
 
 .App-header {
-  background-color: #282c34;
+  background-color: var(--base);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -58,7 +67,7 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: var(--blue);
 }
 
 @keyframes App-logo-spin {

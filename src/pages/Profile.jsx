@@ -1,12 +1,31 @@
-import React from "react";
-import { useContext } from "react";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import "./Profile.css";
 import userStore from "../User";
 import Post from "../components/Post";
 
+//toast lib for pop-ups
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+//import axios (lib to fetch data)
+import axios from "axios";
+import { useState } from "react";
+import useFetch from "../useFetch";
+import Loading from "../components/Loading";
+
 function Profile() {
   const user = userStore((state) => state.user[0]);
+  const { id } = useParams();
+
+  const { data, loading } = useFetch(
+    `http://https://droplikebackend.herokuapp.com/api/user/get/${id}`
+  );
+  const { postData, postLoading } = useFetch(
+    `https://droplikebackend.herokuapp.com/api/post/get/${id}`
+  );
+
   return (
     <div className="profile">
       <header>
@@ -14,21 +33,30 @@ function Profile() {
           <div className="profileImg"></div>
         </div>
         <div className="profileName">
-          {user && user.firstname} {user && user.lastname}
+          {data && data.firstname} {data && data.lastname}
         </div>
-        <div className="profileUsername">@{user && user.username} </div>
+        <div className="profileUsername">
+          {data && `@${data.username}`} {!data && "Error!"}
+          {loading && "fetching..."}
+        </div>
 
         <div className="profileNumbers">
           <div className="following">
-            <p>{user && user.followings.length} </p>
+            <p>
+              {data && data.followings.length} {!data && "!"}
+            </p>
             <span>Followings</span>
           </div>
           <div className="followers">
-            <p>{user && user.followers.length} </p>
+            <p>
+              {data && data.followers.length} {!data && "!"}
+            </p>
             <span>Followers</span>
           </div>
           <div className="posts">
-            <p>{99}</p>
+            <p>
+              {data && data.p} {!data && "!"}
+            </p>
             <span>Posts</span>
           </div>
         </div>
@@ -38,8 +66,8 @@ function Profile() {
           <button className="message">Message</button>
           <img src="/add.svg" className="suggested" alt="" />
         </div>
-        <hr />
       </header>
+      <hr />
 
       <div className="links">
         <p className="posts">Posts</p>
@@ -48,12 +76,15 @@ function Profile() {
       </div>
 
       <div className="inner">
-        <Post />
-        <Post />
-        <Post />
+        {postData &&
+          postData.map((post) => {
+            <Post loading={postLoading} data={postData} key={postData._id} />;
+          })}
+        {postLoading && "<Loading />"}
       </div>
 
       <Footer />
+      <ToastContainer />
     </div>
   );
 }

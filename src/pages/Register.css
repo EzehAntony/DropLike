@@ -1,7 +1,7 @@
 .register {
   min-height: 100vh;
   width: 100%;
-  background-color: #0E0E10;
+  background-color: var(--base);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -16,7 +16,7 @@
 .register form {
   width: 400px;
   min-height: 420px;
-  background-color: #1C1D21;
+  background-color: var(--base2);
   margin-top: 20px;
   border-radius: 20px;
   display: flex;
@@ -30,34 +30,34 @@
   width: 80%;
   margin: 5px;
   padding: 0 10px;
-  background-color: #151718;
+  background-color: var(--base3);
   border: 0;
   border-radius: 10px;
   outline: none;
-  color: white;
+  color:  var(--white);
   transition: .2s;
 }
 
 
 .register form input::placeholder {
-  color: white;
+  color:  var(--white);
   text-transform: capitalize;
 }
 
 .register form p {
-  color: white;
+  color:  var(--white);
   font-size: 15px;
   margin: 5px;
   text-transform: capitalize;
 }
 
 .register form button {
-  background-color: #E3229E;
+  background-color: var(--pink);
   padding: 15px 60px;
   border: 0;
   cursor: pointer;
   margin: 10px 0;
-  color: white;
+  color:  var(--white);
   border-radius: 15px;
 }
 
@@ -66,12 +66,12 @@
 .register h3 {
   font-size: 14px;
   margin: 10px;
-  color: white;
+  color: var(--white);
 }
 
 .register a {
   text-decoration: none;
-  color: #0092c6;
+  color: var(--blue);
 }
 
 @media (max-width: 600px) {

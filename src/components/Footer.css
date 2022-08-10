@@ -1,6 +1,6 @@
 .footer {
   /* background-color: #23242a; */
-  background-color: #0E0E10;
+  background-color: var(--base);
   max-width: 500px;
   height: 70px;
   width: 90%;
@@ -12,7 +12,6 @@
   border-radius: 20px;
 }
 
-
 .footer img {
   width: 60px;
   padding: 0 15px;
@@ -23,7 +22,7 @@
 .footer .home-circle {
   height: 55px;
   width: 55px;
-  border: 2px solid #e3229e;
+  border: 2px solid var(--pink);
   border-radius: 50%;
   display: flex;
   flex-direction: column;

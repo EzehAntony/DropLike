@@ -1,9 +1,8 @@
 .status {
-  border: 1px solid #e3229e;
-  word-break: break-all;
-  height: 60px;
-  width: 60px;
-  border-radius: 20%;
+  border: 1px solid var(--pink);
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
   display: flex;
   justify-content: center;
   align-items: center;

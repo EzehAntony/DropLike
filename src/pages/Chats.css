@@ -1,5 +1,5 @@
 .chats {
-  background-color: #0e0e10;
+  background-color: var(--base);
   width: 100%;
   min-height: 100vh;
   color: white;
@@ -72,7 +72,8 @@
 .chats .main {
   width: 100%;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   padding: 10px 0;
 }
 
@@ -87,11 +88,13 @@
   position: relative;
   border-radius: 20px;
   cursor: pointer;
+  background-color: var(--base2);
 }
 
 .slider {
   width: 100%;
   display: flex;
+  max-width: 900px;
 }
 
 .chats .messages {

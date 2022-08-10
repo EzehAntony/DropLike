@@ -2,7 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import "./Footer.css";
 
+//import user store
+import userStore from "../User";
+
 function Footer() {
+  const user = userStore((state) => state.user[0]);
   return (
     <div className="footer">
       <Link to="/home">
@@ -11,7 +15,7 @@ function Footer() {
       <Link to="/search">
         <img src="/search.svg" alt="" />
       </Link>
-      <Link to="/profile">
+      <Link to={`/profile/${user._id}`}>
         <div className="home-circle">
           <img src="/girl.jpg" alt="" />
         </div>

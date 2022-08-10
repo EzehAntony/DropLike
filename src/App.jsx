@@ -27,12 +27,12 @@ const App = () => {
           <Route path={"/login"} element={<Login />} />
           <Route path={"/home"} element={<Home />} />
           {!user && <Route path={"/home"} element={<Login />} />}
-          <Route path={"/profile"} element={<Profile />} />
+          <Route path={"/profile/:id"} element={<Profile />} />
           {!user && <Route path={"/profile"} element={<Login />} />}
           <Route path={"/search"} element={<Search />} />
           {!user && <Route path={"/search"} element={<Login />} />}
           {!user && <Route path={"/chats"} element={<Chats />} />}
-          <Route path={"/chats"} element={<Login />} />
+          <Route path={"/chats"} element={<Chats />} />
         </Routes>
       </div>
     </Router>
