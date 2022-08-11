@@ -14,7 +14,7 @@ function Post({ data, loading }) {
       </header>
       <div className="mainSection">
         <div className="caption">
-          {data && data.bio}
+          {data && data.caption}
           {loading && "fetching..."}
         </div>
         <div className="image"></div>

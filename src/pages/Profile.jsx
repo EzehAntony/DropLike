@@ -16,15 +16,85 @@ import useFetch from "../useFetch";
 import Loading from "../components/Loading";
 
 function Profile() {
+  //states
+  const [postData, setPostData] = useState(null);
+  const [postLoading, setPostLoading] = useState(false);
+  const [postError, setPostError] = useState(null);
+  const [follow, setFollow] = useState(null);
+  const [followLoading, setFollowLoading] = useState(null);
   const user = userStore((state) => state.user[0]);
   const { id } = useParams();
 
-  const { data, loading } = useFetch(
-    `http://https://droplikebackend.herokuapp.com/api/user/get/${id}`
-  );
-  const { postData, postLoading } = useFetch(
-    `https://droplikebackend.herokuapp.com/api/post/get/${id}`
-  );
+  const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+
+  useEffect(() => {
+    fetchPostData();
+  }, []);
+
+  useEffect(() => {
+    fetchUserData();
+  }, [id]);
+
+  const fetchPostData = async () => {
+    await axios({
+      method: "GET",
+      url: `https://droplikebackend.herokuapp.com/api/post/get/all/${id}`,
+      withCredentials: true,
+    })
+      .then((res) => {
+        setPostLoading(false);
+        setPostError(null);
+        setPostData(res.data);
+      })
+      .catch((err) => {
+        setPostLoading(false);
+        setPostError(err);
+      });
+  };
+
+  const fetchUserData = async () => {
+    setLoading(true);
+    await axios({
+      method: "POST",
+      url: `https://droplikebackend.herokuapp.com/api/user/get/${user._id}`,
+      withCredentials: true,
+      data: {
+        userId: `${id}`,
+      },
+    })
+      .then((res) => {
+        setLoading(false);
+        setError(null);
+        setData(res.data);
+      })
+      .catch((err) => {
+        setLoading(false);
+        setError(err);
+      });
+  };
+
+  const followClick = async (e) => {
+    setFollowLoading(true)
+    e.preventDefault();
+    await axios({
+      method: "put",
+      url: `https://droplikebackend.herokuapp.com/api/user/follow/${user._id}`,
+      withCredentials: true,
+      data: {
+        userId: `${id}`,
+      },
+    })
+      .then((res) => {
+        setFollowLoading(false);
+        setFollow("Followed")
+        setData(res.data);
+      })
+      .catch((err) => {
+        setFollowLoading(false);
+      });
+  };
 
   return (
     <div className="profile">
@@ -55,14 +125,16 @@ function Profile() {
           </div>
           <div className="posts">
             <p>
-              {data && data.p} {!data && "!"}
+              {postData && postData.length} {!postData && "!"}
             </p>
             <span>Posts</span>
           </div>
         </div>
 
         <div className="buttonContainer">
-          <button className="follow">Follow</button>
+          <button className="follow" onClick={followClick}>
+            Follow
+          </button>
           <button className="message">Message</button>
           <img src="/add.svg" className="suggested" alt="" />
         </div>

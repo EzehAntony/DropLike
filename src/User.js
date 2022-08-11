@@ -10,12 +10,6 @@ let userStore = create(
           user: [user],
         }));
       },
-      registeredUser: [],
-      addRegisteredUser: (registeredUser) => {
-        set((state) => ({
-          registeredUser: [registeredUser],
-        }));
-      },
     }),
     { name: "user store" }
   )

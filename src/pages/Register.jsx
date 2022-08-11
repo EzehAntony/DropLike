@@ -24,7 +24,6 @@ function Register() {
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
-  const [mode, setMode] = useState("dark")
   const navigate = useNavigate();
 
 
@@ -47,7 +46,6 @@ function Register() {
           password: password.toLowerCase(),
         },
       }).then((res) => {
-        addUser({ username, password });
         toast.update("register", {
           render: "Registered",
           type: "success",
@@ -77,15 +75,7 @@ function Register() {
     }
   };
 
-  const toggle = () => {
-    if(mode == "dark") {
-      setMode("Light");
-      //How to change root css in JavaScript.
 
-    }else {
-      setMode("dark")
-    }
-  }
   return (
     <div className="register">
       <img src="/logo4.png" alt="" />
@@ -138,7 +128,6 @@ function Register() {
           Already have an account? <Link to="/login">login</Link>
         </h3>
       </form>
-      <button onClick={toggle}>{mode} mode</button>
       <ToastContainer />
     </div>
   );

@@ -13,11 +13,9 @@ function Home() {
   const user = userStore((state) => state.user[0]);
 
   const { id } = useParams();
-
   const { data, loading, error } = useFetch(
     `https://droplikebackend.herokuapp.com/api/post/timeline/${id}`
   );
-
   return (
     <div className="home">
       <header>
@@ -28,7 +26,7 @@ function Home() {
       <div className="split">
         <div className="home-main">
           {data &&
-            data.map((d) => {
+            data.map(() => {
               <Post data={data} key={data._id} loading={loading} />;
             })}
           {!data && "Add friends to view posts"}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./Footer.css";
 
 //import user store
@@ -9,7 +9,7 @@ function Footer() {
   const user = userStore((state) => state.user[0]);
   return (
     <div className="footer">
-      <Link to="/home">
+      <Link to={`/home/${user._id}`}>
         <img src="/box-white.svg" alt="" />
       </Link>
       <Link to="/search">

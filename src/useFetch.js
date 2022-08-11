@@ -12,13 +12,15 @@ function useFetch(url, sendData) {
     fetchData(url, sendData);
   }, [url]);
 
-  const fetchData = async (url, sendData) => {
+  const fetchData = async (url, method, iid) => {
     setLoading(true);
     await axios({
-      method: "GET",
+      method: method,
       url: `${url}`,
       withCredentials: true,
-      data: sendData,
+      data: {
+        userId: iid,
+      },
     })
       .then((res) => {
         setLoading(false);

@@ -9,17 +9,13 @@ function Friend({ style, data, loading }) {
   //click function to redirect to profile of selected profile
 
   return (
-    <Link
-      to={`/profile/${data && data._id}`}
-      className="friendContainer"
-      style={style}
-    >
+    <div className="friendContainer" style={style}>
       <img src="/girl.jpg" className="profilePicture" alt="" />
       <div className="username">
-        {data && data.username} {loading && "freching..."} 
+        {data && data.username} {loading && "freching..."}
       </div>
       <img src="/add.svg" className="add" alt="" />
-    </Link>
+    </div>
   );
 }
 

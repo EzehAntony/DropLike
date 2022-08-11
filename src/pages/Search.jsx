@@ -5,20 +5,17 @@ import Friend from "../components/Friend";
 import { useState } from "react";
 import useFetch from "../useFetch";
 import { useEffect } from "react";
+import userStore from "../User";
+import { Link } from "react-router-dom";
 
 function Search() {
   const [search, setSearch] = useState("");
+  const user = userStore((state) => state.user[0]);
 
   const { data, loading, error } = useFetch(
-    "https://droplikebackend.herokuapp.com/api/user/all"
+    `https://droplikebackend.herokuapp.com/api/user/all/${user._id}`
   );
 
-  useEffect(() => {
-    const newApple = [];
-    const apples = ["apple", "stew", "yam", "reem"];
-    const a = apples[Math.floor(Math.random() * 3)];
-
-  }, []);
   return (
     <div className="searchPage">
       <div className="searchContainer">
@@ -29,13 +26,19 @@ function Search() {
           placeholder="Search"
         />
         {data &&
-          data.filter((e) => {
-            if (search == "") {
-              return <Friend style={{ width: "60%" }} data={data} />;
-            } else if (e.includes(search)) {
-              return <Friend style={{ width: "60%" }} data={data} />;
-            }
-          })}
+          data
+            .filter((e) => {
+              if (search == "") {
+                return e;
+              } else if (e.includes(search)) {
+                return e;
+              }
+            })
+            .map((data) => (
+              <Link to={`/profile/${data._id}`}>
+                <Friend style={{ width: "100%" }} data={data} key={data._id} />
+              </Link>
+            ))}
         {!data && "No data"}
       </div>
       <Footer />
