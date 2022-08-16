@@ -47,16 +47,25 @@
   from {
   }
   to {
-    padding: 5px;
+    transform: scale(1.1);
   }
 }
 
 .profile .profileImg {
   height: 100px;
   width: 100px;
+  display: flex;
   border-radius: 50%;
   background-color: var(--base3);
   margin: 5px;
+  position: relative;
+}
+
+.profile .profileImg img {
+  width: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+
 }
 
 .profile .profileName {

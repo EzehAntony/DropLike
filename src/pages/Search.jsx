@@ -15,6 +15,8 @@ function Search() {
   const { data, loading, error } = useFetch(
     `https://droplikebackend.herokuapp.com/api/user/all/${user._id}`
   );
+  console.log(data)
+
 
   return (
     <div className="searchPage">
@@ -36,7 +38,7 @@ function Search() {
             })
             .map((data) => (
               <Link to={`/profile/${data._id}`}>
-                <Friend style={{ width: "100%" }} data={data} key={data._id} />
+                <Friend  key={data._id} data={data}  style={{ width: "100%" }} />
               </Link>
             ))}
         {!data && "No data"}

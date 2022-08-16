@@ -1,16 +1,16 @@
 .searchPage {
+  background-color: var(--base);
   min-height: 100vh;
-  background-color: #0e0e10;
-  color: white;
-  display: flex;
+  width: 100%;
   padding: 20px 5%;
   max-width: 2000px;
-  min-height: calc(100vh + 10px);
+  min-width: 300px;
+  display: flex;
   flex-direction: column;
   align-items: center;
-  position: relative;
+  justify-self: center;
 }
-.searchPage  a {
+.searchPage > .searchContainer a {
   text-decoration: none;
   width: 100%;
 }

@@ -29,14 +29,6 @@ function Profile() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    fetchPostData();
-  }, []);
-
-  useEffect(() => {
-    fetchUserData();
-  }, [id]);
-
   const fetchPostData = async () => {
     await axios({
       method: "GET",
@@ -47,6 +39,32 @@ function Profile() {
         setPostLoading(false);
         setPostError(null);
         setPostData(res.data);
+        return res;
+      })
+      .then((res) => {
+        setLoading(true);
+        axios({
+          method: "POST",
+          url: `https://droplikebackend.herokuapp.com/api/user/get/${user._id}`,
+          withCredentials: true,
+          data: {
+            userId: `${id}`,
+          },
+        })
+          .then((res) => {
+            setLoading(false);
+            setError(null);
+            setData(res.data);
+            if (res.data.followers.includes(user._id)) {
+              setFollow("Unfollow");
+            } else {
+              setFollow("Follow");
+            }
+          })
+          .catch((err) => {
+            setLoading(false);
+            setError(err);
+          });
       })
       .catch((err) => {
         setPostLoading(false);
@@ -54,59 +72,62 @@ function Profile() {
       });
   };
 
-  const fetchUserData = async () => {
-    setLoading(true);
-    await axios({
-      method: "POST",
-      url: `https://droplikebackend.herokuapp.com/api/user/get/${user._id}`,
-      withCredentials: true,
-      data: {
-        userId: `${id}`,
-      },
-    })
-      .then((res) => {
-        setLoading(false);
-        setError(null);
-        setData(res.data);
+  const followClick = async (e) => {
+    e.preventDefault();
+    if (follow === "Unfollow") {
+      setFollowLoading(true);
+      await axios({
+        method: "put",
+        url: `https://droplikebackend.herokuapp.com/api/user/unfollow/${user._id}`,
+        withCredentials: true,
+        data: {
+          userId: `${id}`,
+        },
       })
-      .catch((err) => {
-        setLoading(false);
-        setError(err);
-      });
+        .then((res) => {
+          setFollowLoading(false);
+          setFollow("Follow");
+        })
+        .catch((err) => {
+          setFollowLoading(false);
+        });
+    } else {
+      setFollowLoading(true);
+      await axios({
+        method: "put",
+        url: `https://droplikebackend.herokuapp.com/api/user/follow/${user._id}`,
+        withCredentials: true,
+        data: {
+          userId: `${id}`,
+        },
+      })
+        .then((res) => {
+          setFollowLoading(false);
+          setFollow("Unfollow");
+        })
+        .catch((err) => {
+          setFollowLoading(false);
+        });
+    }
   };
 
-  const followClick = async (e) => {
-    setFollowLoading(true)
-    e.preventDefault();
-    await axios({
-      method: "put",
-      url: `https://droplikebackend.herokuapp.com/api/user/follow/${user._id}`,
-      withCredentials: true,
-      data: {
-        userId: `${id}`,
-      },
-    })
-      .then((res) => {
-        setFollowLoading(false);
-        setFollow("Followed")
-        setData(res.data);
-      })
-      .catch((err) => {
-        setFollowLoading(false);
-      });
-  };
+  useEffect(() => {
+    fetchPostData();
+  }, [id, follow]);
 
   return (
     <div className="profile">
       <header>
         <div className="profileRing">
-          <div className="profileImg"></div>
+          <div className="profileImg">
+            <img src="/henessy.jpg" alt="" />
+          </div>
         </div>
         <div className="profileName">
           {data && data.firstname} {data && data.lastname}
         </div>
         <div className="profileUsername">
-          {data && `@${data.username}`} {!data && "Error!"}
+          {followLoading && "Loading..."}
           {loading && "fetching..."}
         </div>
 
@@ -133,7 +154,7 @@ function Profile() {
 
         <div className="buttonContainer">
           <button className="follow" onClick={followClick}>
-            Follow
+            {data && follow} {!data && "network error"}
           </button>
           <button className="message">Message</button>
           <img src="/add.svg" className="suggested" alt="" />

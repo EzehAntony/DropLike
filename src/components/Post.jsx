@@ -1,8 +1,8 @@
 import React from "react";
 import "./Post.css";
-import userStore from "../User";
 
 function Post({ data, loading }) {
+  console.log(data);
   return (
     <div className="post">
       <header className="post-header">

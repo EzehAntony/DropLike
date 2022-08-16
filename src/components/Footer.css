@@ -1,9 +1,9 @@
 .footer {
   /* background-color: #23242a; */
-  background-color: var(--base);
-  max-width: 500px;
-  height: 70px;
-  width: 90%;
+  background-color: var(--base2);
+  max-width: 900px;
+  height: 60px;
+  width: 80%;
   display: flex;
   position: fixed;
   bottom: 10px;
@@ -33,4 +33,10 @@
 .footer .home-circle img {
   border-radius: 50%;
   width: 150%;
+}
+
+@media (min-width: 801px) {
+  .footer {
+    max-width: 400px;
+  }
 }
