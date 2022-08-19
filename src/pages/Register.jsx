@@ -27,8 +27,6 @@ function Register() {
     password: "",
   });
 
-  console.log(input);
-
   const navigate = useNavigate();
 
   //Form Submit function

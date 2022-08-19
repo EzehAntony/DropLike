@@ -36,6 +36,8 @@ function Home() {
       .catch((err) => {
         console.log(err);
       });
+
+      console.log(timeline)
   };
   const fetchUser = async () => {
     await axios({
@@ -130,8 +132,8 @@ function Home() {
       <div className="split">
         <div className="home-main">
           {!userFriends && "Add friends to view posts"}
-          {timeline &&
-            timeline.map((post) => <Post data={post} key={post._id} />)}
+          {timeline  &&
+            timeline.map((post) => (<Post data={post} key={post} />))}
           {loading && <Loading />}
         </div>
 
