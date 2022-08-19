@@ -5,11 +5,11 @@ import "./Friend.css";
 // user store
 import userStore from "../User";
 
-function Friend({ style, data, loading }) {
+function Friend({ style, data, loading, index }) {
   //click function to redirect to profile of selected profile
 
   return (
-    <div className="friendContainer" style={style}>
+    <div className="friendContainer"  key={index} style={style}>
       <img src="/girl.jpg" className="profilePicture" alt="" />
       <div className="username">
         {data && data.username} {loading && "freching..."}

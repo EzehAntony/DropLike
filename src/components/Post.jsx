@@ -4,13 +4,13 @@ import "./Post.css";
 function Post({ data, loading }) {
   return (
     <div className="post">
-      <header className="post-header">
+      <div className="post-header">
         {data && <div className="userImage"></div>}
         <div className="username">
           @{data && data.username}
           {loading && "fetching..."}
         </div>
-      </header>
+      </div>
       <div className="mainSection">
         <div className="caption">
           {data && data.caption}

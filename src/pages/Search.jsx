@@ -37,12 +37,8 @@ function Search() {
                 }
               })
               .map((data) => (
-                <Link to={`/profile/${data._id}`}>
-                  <Friend
-                    data={data}
-                    key={data._id}
-                    style={{ width: "100%" }}
-                  />
+                <Link to={`/profile/${data._id}`} key={data._id}>
+                  <Friend data={data} style={{ width: "100%" }} />
                 </Link>
               ))}
         </div>

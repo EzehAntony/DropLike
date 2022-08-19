@@ -169,7 +169,7 @@ function Profile() {
 
   useEffect(() => {
     timeline();
-  }, []);
+  }, [id, follow]);
 
   useEffect(() => {
     if (profile.user !== null) {
@@ -178,7 +178,7 @@ function Profile() {
   }, [profile.user]);
   return (
     <div className="profile">
-      <header>
+      <div className="header">
         <div className="profileRing">
           <div className="profileImg">
             <img src="/henessy.jpg" alt="" />
@@ -188,6 +188,7 @@ function Profile() {
           {data && data.firstname} {data && data.lastname}
         </div>
         <div className="profileUsername">
+          {profile.user && `@${profile.user.username} `}
           {followLoading && "Loading..."}
           {loading && "fetching..."}
         </div>
@@ -225,7 +226,7 @@ function Profile() {
             <img src="/add.svg" className="suggested" alt="" />
           </div>
         )}
-      </header>
+      </div>
       <hr />
 
       <div className="links">

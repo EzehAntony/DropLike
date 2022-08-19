@@ -36,8 +36,6 @@ function Home() {
       .catch((err) => {
         console.log(err);
       });
-
-      console.log(timeline)
   };
   const fetchUser = async () => {
     await axios({
@@ -76,8 +74,13 @@ function Home() {
 
   const textPostFunction = async (e) => {
     e.preventDefault();
+    toast.loading("Posting...", {
+      theme: "colored",
+      type: "info",
+      toastId: "post",
+    });
     await axios({
-      url: "",
+      url: "https://droplikebackend.herokuapp.com/api/post/create",
       method: "POST",
       withCredentials: true,
       data: {
@@ -86,11 +89,12 @@ function Home() {
       },
     })
       .then((res) => {
-        toast.warning("Posted", {
+        toast.update("post", {
+          render: "Posted",
           theme: "colored",
           autoClose: 1000,
-          closeButton: false,
-          hideProgressBar: true,
+          isLoading: false,
+          type: "success",
         });
       })
       .catch((err) => {
@@ -132,18 +136,21 @@ function Home() {
       <div className="split">
         <div className="home-main">
           {!userFriends && "Add friends to view posts"}
-          {timeline  &&
-            timeline.map((post) => (<Post data={post} key={post} />))}
+          {timeline &&
+            timeline.map((post, index) => <Post data={post} key={index} />)}
           {loading && <Loading />}
         </div>
 
         <div className="home-other">
           {userFriends &&
-            userFriends.map((user) => <Friends data={user} key={user._id} />)}
+            userFriends.map((user, index) => (
+              <Friends data={user} key={index} />
+            ))}
         </div>
       </div>
 
       <Footer />
+      <ToastContainer/>
     </div>
   );
 }
