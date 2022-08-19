@@ -2,11 +2,10 @@ import React from "react";
 import "./Post.css";
 
 function Post({ data, loading }) {
-  console.log(data);
   return (
     <div className="post">
       <header className="post-header">
-        <div className="userImage"></div>
+        {data && <div className="userImage"></div>}
         <div className="username">
           @{data && data.username}
           {loading && "fetching..."}

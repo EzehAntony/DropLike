@@ -16,16 +16,20 @@ import userStore from "../User";
 function Register() {
   document.title = "DropLike Register";
 
-  //User store 
+  //User store
   const addUser = userStore((state) => state.addRegisteredUser);
 
   //Input state
-  const [firstName, setFirstname] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-  const navigate = useNavigate();
+  const [input, setInput] = useState({
+    firstName: "",
+    lastName: "",
+    username: "",
+    password: "",
+  });
 
+  console.log(input);
+
+  const navigate = useNavigate();
 
   //Form Submit function
   const submit = async (e) => {
@@ -40,10 +44,10 @@ function Register() {
         method: "POST",
         withCredentials: true,
         data: {
-          firstname: firstName.toLowerCase(),
-          lastname: lastName.toLowerCase(),
-          username: username.toLowerCase(),
-          password: password.toLowerCase(),
+          firstname: input.firstName,
+          lastname: input.lastName,
+          username: input.username,
+          password: input.password,
         },
       }).then((res) => {
         toast.update("register", {
@@ -75,7 +79,6 @@ function Register() {
     }
   };
 
-
   return (
     <div className="register">
       <img src="/logo4.png" alt="" />
@@ -84,29 +87,44 @@ function Register() {
         <input
           type="text"
           placeholder="firstname"
-          maxLength={20}
+          maxLength={15}
           minLength={5}
-          value={firstName}
-          onChange={(e) => setFirstname(e.target.value)}
+          value={input.firstName}
+          onChange={(e) =>
+            setInput({
+              ...input,
+              firstName: e.target.value.toLowerCase().trim(),
+            })
+          }
           required={true}
         />
         <input
           type="text"
           placeholder="lastname"
-          value={lastName}
-          maxLength={20}
-          minLength={5}
-          onChange={(e) => setLastName(e.target.value)}
+          value={input.lastName}
+          maxLength={15}
+          minLength={3}
+          onChange={(e) =>
+            setInput({
+              ...input,
+              lastName: e.target.value.toLowerCase().trim(),
+            })
+          }
           required={true}
         />
         <input
           type="text"
           placeholder="username"
           autoSave="true"
-          value={username}
+          value={input.username}
           minLength={5}
           maxLength={20}
-          onChange={(e) => setUsername(e.target.value)}
+          onChange={(e) =>
+            setInput({
+              ...input,
+              username: e.target.value.toLowerCase().trim(),
+            })
+          }
           required={true}
         />
 
@@ -114,9 +132,9 @@ function Register() {
           type="password"
           autoSave="true"
           placeholder="password"
-          value={password}
+          value={input.password}
           minLength={5}
-          onChange={(e) => setPassword(e.target.value)}
+          onChange={(e) => setInput({ ...input, password: e.target.value })}
           maxLength={15}
           required={true}
         />

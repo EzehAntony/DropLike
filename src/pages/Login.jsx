@@ -11,8 +11,10 @@ const Login = () => {
   document.title = "DropLike Login";
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [inputValue, setInputValue] = useState({
+    username: "",
+    password: "",
+  });
 
   const user = userStore((state) => state.user[0]);
   const addUser = userStore((state) => state.addUser);
@@ -30,8 +32,8 @@ const Login = () => {
         method: "POST",
         withCredentials: true,
         data: {
-          username: username,
-          password: password,
+          username: inputValue.username,
+          password: inputValue.password,
         },
       }).then((res) => {
         addUser(res.data);
@@ -63,22 +65,32 @@ const Login = () => {
   };
   return (
     <div className="login">
-      <img src="/logo4.png" alt="" />(
+      <img src="/logo4.png" alt="" />
       <form onSubmit={submit}>
         <input
           autoComplete="true"
           type="text"
           placeholder="username"
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          value={inputValue.username}
+          onChange={(e) =>
+            setInputValue((prev) => ({
+              ...inputValue,
+              username: e.target.value,
+            }))
+          }
           required={true}
         />
         <input
           type="text"
           autoComplete="true"
           placeholder="password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
+          value={inputValue.password}
+          onChange={(e) =>
+            setInputValue((prev) => ({
+              ...inputValue,
+              password: e.target.value,
+            }))
+          }
           required={true}
         />
         <button type="submit">Log In</button>
@@ -86,25 +98,10 @@ const Login = () => {
           Don't have an account? <Link to="/register">Register</Link>
         </h3>
       </form>
-      )
+
       <ToastContainer />
     </div>
   );
 };
 
 export default Login;
-
-/* {
-  "_id": "62eb470392306d95ed89d964",
-  "firstname": "anthony",
-  "lastname": "Ezeh",
-  "username": "crayonne",
-  "isAdmin": false,
-  "followings": [],
-  "followers": [],
-  "profile": "",
-  "bio": "",
-  "createdAt": "2022-08-04T04:11:47.270Z",
-  "updatedAt": "2022-08-04T04:11:47.270Z",
-  "__v": 0
-}  */

@@ -15,8 +15,6 @@ function Search() {
   const { data, loading, error } = useFetch(
     `https://droplikebackend.herokuapp.com/api/user/all/${user._id}`
   );
-  console.log(data)
-
 
   return (
     <div className="searchPage">
@@ -27,21 +25,29 @@ function Search() {
           onChange={(e) => setSearch(e.target.value)}
           placeholder="Search"
         />
-        {data &&
-          data
-            .filter((e) => {
-              if (search == "") {
-                return e;
-              } else if (e.includes(search)) {
-                return e;
-              }
-            })
-            .map((data) => (
-              <Link to={`/profile/${data._id}`}>
-                <Friend  key={data._id} data={data}  style={{ width: "100%" }} />
-              </Link>
-            ))}
-        {!data && "No data"}
+
+        <div className="searchResult">
+          {data &&
+            data
+              .filter((e) => {
+                if (search == "") {
+                  return e;
+                } else if (e.includes(search)) {
+                  return e;
+                }
+              })
+              .map((data) => (
+                <Link to={`/profile/${data._id}`}>
+                  <Friend
+                    data={data}
+                    key={data._id}
+                    style={{ width: "100%" }}
+                  />
+                </Link>
+              ))}
+        </div>
+
+        {!data && <h3>No data</h3>}
       </div>
       <Footer />
     </div>

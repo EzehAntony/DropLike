@@ -18,25 +18,51 @@
   width: 100%;
   max-width: 1000px;
   padding: 10px;
-  background-color: #151718;
+  background-color: var(--base2);
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   border-radius: 10px;
+  color: white;
 }
 
 .searchContainer > input {
   height: 50px;
-  width: 95%;
+  width: 100%;
   padding: 0 0 0 20px;
   border-radius: 50px;
-  background-color: #23242a;
+  background-color: var(--base3);
   border: 0;
   outline: none;
   margin: 10px 0;
   color: white;
 }
 
+.searchContainer > h3 {
+  font-size: 15px;
+  margin: 10px 10px;
+  padding: 10px 10px;
+  width: 100%;
+  text-align: left;
+}
+
 .searchContainer > input::placeholder {
-  color: rgb(160, 160, 160);
+  color: #ffffff;
+}
+
+.searchResult {
+  width: 100%;
+}
+
+@media (min-width: 901px) {
+
+  .searchResult {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    flex-wrap: wrap;
+  }
+  
 }

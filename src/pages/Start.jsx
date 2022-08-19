@@ -10,16 +10,16 @@ function Start() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    toast.info(
+    toast.warning(
       "Welcome",
       {
         theme: "colored",
         closeButton: false,
         onClose: () => {
-          navigate("/register");
+         navigate("/register");
         },
-        autoClose: 2000,
-        icon: ""
+        autoClose: 1500,
+        icon: "",
       },
       []
     );
@@ -27,12 +27,9 @@ function Start() {
 
   return (
     <div className="start">
-      <img className="logo" src="/logo4.png" alt="logo" />
-      <div className="welcome">
-        <h3>
-          Welcome to <span>DropLike</span>
-        </h3>
-      </div>
+      <img src="/logo4.png" className="logo" alt="" />
+      <h3>droplike . . .</h3>
+
       <ToastContainer />
     </div>
   );

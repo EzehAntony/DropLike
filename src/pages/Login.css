@@ -33,7 +33,7 @@
   background-color: var(--base3);
   border: 0;
   border-radius: 10px;
-  outline-color: var(--pink);
+  outline-color: var(--yellow);
   color:  var(--white);
   transition: 0.2s;
 }
@@ -54,13 +54,13 @@
 }
 
 .login form button {
-  background-color: var(--pink)  ;
+  background-color: var(--yellow)  ;
   padding: 15px 60px;
   border: 0;
   cursor: pointer;
   margin: 10px 0;
-  color:  var(--white);
-  border-radius: 15px;
+  color:  var(--black);
+  border-radius: 50px;
 }
 
 .login h3 {

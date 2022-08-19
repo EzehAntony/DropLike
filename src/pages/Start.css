@@ -1,39 +1,32 @@
 .start {
-  color: black;
-  background-color: var(--base);
+  color: white;
+  background-color: var(--black);
   min-height: 100vh;
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   width: 100%;
+}
+
+.start > h3 {
+  font-weight: 800;
+  text-transform: uppercase;
+  font-family: cursive;
 }
 
 .start .logo {
   width: 100px;
   margin: 0 0 20px 0;
+  
+  animation: logo 1s infinite alternate;
 }
 
-.start > .welcome {
-  width: 80%;
-  max-width: 500px;
-  min-height: 200px;
-  background-color: var(--base2);
-  border: 0;
-  border-radius: 8px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-.start .welcome h3 {
-  font-size: 20px;
-  color: var(--white);
-}
-
-@media (max-width: 900px) {
-  .start > .welcome {
-    min-height: 120px;
+@keyframes logo {
+  from {
+    transform: translateY(-10px);
+  }
+  to {
+    transform: translateY(10px);
   }
 }
