@@ -20,7 +20,7 @@
   top: 0;
 }
 
-.home >header .headerInner {
+.home > header .headerInner {
   max-width: 900px;
   width: 100%;
   display: flex;
@@ -52,7 +52,7 @@
   padding: 0 20px;
   border: 0;
   cursor: pointer;
-  transition: .4s;
+  transition: 0.4s;
 }
 
 .home .homePost:hover {
@@ -65,13 +65,14 @@
 
 .home > .split {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   width: 100%;
   margin-top: 80px;
 }
 
 .home-main {
-  width: 100%;
+  width: 80%;
+  max-width: 700px;
   color: var(--white);
   background-color: var(--base2);
   min-height: 90vh;
@@ -80,11 +81,15 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  margin-right: 20px;
+  padding: 20px;
 }
 
 .home-other {
   background-color: var(--base2);
-  width: 300px;
+  width: 20%;
+  min-width: 300px;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -103,14 +108,13 @@
   border-radius: 10px;
 }
 
-@media (max-width: 900px) {
-
+@media (max-width: 1000px) {
   .home input {
     width: 65%;
   }
 
   .home .split {
-    display: block;
+    flex-direction: column;
   }
 
   .home-main {

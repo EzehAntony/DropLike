@@ -14,7 +14,7 @@ const Login = () => {
   const [inputValue, setInputValue] = useState({
     username: "",
     password: "",
-  });
+  });  
 
   const user = userStore((state) => state.user[0]);
   const addUser = userStore((state) => state.addUser);

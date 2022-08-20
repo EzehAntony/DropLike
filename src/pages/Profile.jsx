@@ -5,16 +5,12 @@ import "./Profile.css";
 import userStore from "../User";
 import Post from "../components/Post";
 import Friend from "../components/Friend";
-
 //toast lib for pop-ups
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-
 //import axios (lib to fetch data)
 import axios from "axios";
 import { useState } from "react";
-import useFetch from "../useFetch";
-import Loading from "../components/Loading";
 
 function Profile() {
   //states
@@ -56,7 +52,6 @@ function Profile() {
         setPostError(err);
       });
   };
-
   const fetchuserProfile = async () => {
     setLoading(true);
     axios({
@@ -83,7 +78,6 @@ function Profile() {
         setError(err);
       });
   };
-
   const fetchFrieneds = async () => {
     const promise = Promise.all(
       profile.user.followers.map((e) => {
@@ -106,7 +100,6 @@ function Profile() {
     );
     return promise;
   };
-
   const followClick = async (e) => {
     e.preventDefault();
     if (follow === "Unfollow") {
@@ -146,28 +139,25 @@ function Profile() {
     }
   };
 
-  //fetch all and return response at the same time
-
+  //butto clicks
   const post = (e) => {
     e.preventDefault();
     setValue("posts");
   };
-
   const followers = (e) => {
     e.preventDefault();
     setValue("followers");
   };
-
   const followings = (e) => {
     e.preventDefault();
     setValue("followings");
   };
 
+  //useEffect hooks with dependencies
+
+  //Fetch the user's profile
   useEffect(() => {
     fetchuserProfile();
-  }, [id, follow]);
-
-  useEffect(() => {
     timeline();
   }, [id, follow]);
 
@@ -176,6 +166,7 @@ function Profile() {
       fetchFrieneds();
     }
   }, [profile.user]);
+
   return (
     <div className="profile">
       <div className="header">
@@ -243,7 +234,7 @@ function Profile() {
 
       <div className="inner">
         {value === "posts" &&
-          profile.posts.map((post) => <Post data={post} key={post._id} />)}
+          profile.posts?.map((post) => <Post data={post} key={post._id} />)}
 
         {value === "followers" && (
           <div className="followersWrapper">

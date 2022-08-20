@@ -51,7 +51,6 @@ function Home() {
       })
       .catch((err) => {});
   };
-
   const fetchFriends = async () => {
     const promise = Promise.all(
       data.followings.map((e) => {
@@ -71,7 +70,6 @@ function Home() {
     );
     return promise;
   };
-
   const textPostFunction = async (e) => {
     e.preventDefault();
     toast.loading("Posting...", {
@@ -98,7 +96,14 @@ function Home() {
         });
       })
       .catch((err) => {
-        console.log(err);
+        toast.update("post", {
+          render: "Failed to post",
+          pauseOnFocusLoss: false,
+          autoClose: 1000,
+          isLoading: false,
+          type: "warning",
+          
+        });
       });
   };
 
@@ -133,12 +138,15 @@ function Home() {
           </button>
         </div>
       </header>
+
+
       <div className="split">
         <div className="home-main">
           {!userFriends && "Add friends to view posts"}
           {timeline &&
             timeline.map((post, index) => <Post data={post} key={index} />)}
           {loading && <Loading />}
+          <Post/>
         </div>
 
         <div className="home-other">

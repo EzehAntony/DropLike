@@ -21,8 +21,8 @@
   border-radius: 50px;
   width: 60px;
   height: 60px;
-  background-color: var(--base3);
   border: 1px solid var(--blue);
+  object-fit: cover;
 }
 
 .post .username {
@@ -56,6 +56,7 @@
   border-radius: 10px;
   height: 500px;
   cursor: pointer;
+  object-fit: cover;
 }
 
 .post .action {
@@ -77,19 +78,14 @@
 
 .post p {
   color: white;
-  border-radius: 10px;
   cursor: pointer;
   font-size: 13px;
-  padding: 10px 20px;
-  background-color: #0092c6;
-  font-weight: 600;
   text-transform: capitalize;
   transition: 0.4s;
 }
 
 .post p:hover {
-  color: black;
-  background-color: #00698f;
+  color: var(--blue);
 }
 
 @media (max-width: 900px) {
