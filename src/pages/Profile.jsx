@@ -315,19 +315,19 @@ function Profile() {
 
       <div ref={(el) => (content = el)} className="inner">
         {value === "posts" &&
-          profile.posts?.map((post) => <Post data={post} key={post._id} />)}
+          profile.posts?.map((post, index) => <Post data={post} key={index} />)}
 
         {value === "followers" && (
           <div className="followersWrapper">
-            {profile.userFollowers?.map((post) => (
-              <Friend data={post} key={post._id} />
+            {profile.userFollowers?.map((post, index) => (
+              <Friend data={post} key={index} />
             ))}
           </div>
         )}
         {value === "followings" && (
           <div className="followersWrapper">
-            {profile.userFollowings?.map((post) => (
-              <Friend data={post} key={post._id} />
+            {profile.userFollowings?.map((post, index) => (
+              <Friend data={post} key={index} />
             ))}
           </div>
         )}

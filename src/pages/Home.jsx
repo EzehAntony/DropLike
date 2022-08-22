@@ -130,7 +130,6 @@ function Home() {
 
   //**************UseRef*************//
   let header = useRef(null);
-  let footer = useRef(null);
 
   //*************Gsap UseEffect**************//
   useEffect(() => {
