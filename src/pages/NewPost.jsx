@@ -12,7 +12,7 @@ function NewPost() {
           <img src="/henessy.jpg" alt="" />
         </div>
 
-        <p className="username">{user.username}</p>
+        <p className="username">New Post as {user.username} </p>
       </header>
 
       <textarea

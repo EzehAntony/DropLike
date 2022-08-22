@@ -145,13 +145,6 @@ function Home() {
             timeline.map((post, index) => <Post data={post} key={index} />)}
           {loading && <Loading />}
         </div>
-
-        <div className="home-other">
-          {userFriends &&
-            userFriends.map((user, index) => (
-              <Friends data={user} key={index} />
-            ))}
-        </div>
       </div>
 
       <Footer />

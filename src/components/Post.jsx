@@ -48,11 +48,10 @@ function Post({ data, loading }) {
         {<img src="/girl.jpg" className="image" />}
 
         <div className="action">
-          <div className="like"></div>
-          <div className="comment"></div>
-          <div className="share"></div>
+          <img src="/liked.png" className="actionImg" alt="" />
+          <img src="/comment.png" className="actionImg" alt="" />
+          <img src="/delete.png" className="actionImg" alt="" />
         </div>
-        <p>View comments</p>
       </div>
     </div>
   );

@@ -63,30 +63,17 @@
   height: 40px;
   width: 30%;
   display: flex;
-  justify-content: space-evenly;
+  justify-content:center;
   align-items: center;
   margin: 10px 0;
 }
 
-.post .action div {
-  background-color: var(--black);
-  height: 30px;
+.post .action .actionImg {
   width: 30px;
   cursor: pointer;
-  border-radius: 5px;
+  margin: 0 10px;
 }
 
-.post p {
-  color: white;
-  cursor: pointer;
-  font-size: 13px;
-  text-transform: capitalize;
-  transition: 0.4s;
-}
-
-.post p:hover {
-  color: var(--blue);
-}
 
 @media (max-width: 900px) {
   .post {
