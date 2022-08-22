@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { toast, Toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { TweenMax } from "gsap";
+
 function Home() {
   document.title = "Homepage";
   const user = userStore((state) => state.user[0]);
@@ -129,19 +130,19 @@ function Home() {
   }, [userFriends]);
 
   //**************UseRef*************//
-  let header = useRef(null);
+  let headerRef = useRef(null);
 
   //*************Gsap UseEffect**************//
   useEffect(() => {
-    TweenMax.from(header, 0.8, {
+    TweenMax.from(headerRef, 0.8, {
       y: -20,
-      opacity:0
+      opacity: 0,
     });
   }, []);
 
   return (
     <div className="home">
-      <header ref={(el) => (header = el)}>
+      <header ref={(el) => (headerRef = el)}>
         <div className="headerInner">
           <img src="/box.svg" className="logo" alt="" />
           <input

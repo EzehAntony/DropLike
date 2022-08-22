@@ -10,6 +10,7 @@ function Post({ data, loading }) {
 
   //*****************UseState*******************//
   const [userProfile, setUserProfile] = useState(null);
+  const [likee, setLikee] = useState(null);
 
   //*****************Fetch Function*******************//
   const fetchUserDetail = async () => {
@@ -25,8 +26,44 @@ function Post({ data, loading }) {
     });
   };
 
+  //*********************Like Function***********************//
+  const likeFunc = async () => {
+    if (likee == "liked") {
+      setLikee("unliked");
+      await axios({
+        url: `https://droplikebackend.herokuapp.com/api/post/like/${data._id}`,
+        method: "PUT",
+        withCredentials: true,
+        data: {
+          userId: user._id,
+        },
+      }).catch((err) => {
+        setLikee("liked");
+      });
+    } else {
+      setLikee("liked");
+      await axios({
+        url: `https://droplikebackend.herokuapp.com/api/post/like/${data._id}`,
+        method: "PUT",
+        withCredentials: true,
+        data: {
+          userId: user._id,
+        },
+      })
+        .then((res) => {
+          console.log(res.data);
+        })
+        .catch((err) => {
+          setLikee("unlike");
+        });
+    }
+  };
   //*****************UseEffect*******************//
   useEffect(() => {
+    if (data?.likes.includes(user._id)) {
+      setLikee("liked");
+    } else {
+    }
     if (data) {
       fetchUserDetail();
     } else {
@@ -88,7 +125,6 @@ function Post({ data, loading }) {
           <img
             ref={(el) => (profilePicture = el)}
             src="/henessy.jpg"
-            ref={(el) => (profilePicture = el)}
             className="userImage"
           />
         )}
@@ -108,12 +144,23 @@ function Post({ data, loading }) {
         {<img src="/girl.jpg" ref={(el) => (image = el)} className="image" />}
 
         <div className="action">
-          <img
-            src="/liked.png"
-            ref={(el) => (like = el)}
-            className="actionImg"
-            alt=""
-          />
+          {likee == "liked" ? (
+            <img
+              onClick={likeFunc}
+              src="/liked.png"
+              ref={(el) => (like = el)}
+              className="actionImg"
+              alt=""
+            />
+          ) : (
+            <img
+              onClick={likeFunc}
+              src="/notliked.png"
+              ref={(el) => (like = el)}
+              className="actionImg"
+              alt=""
+            />
+          )}
           <img
             src="/comment.png"
             ref={(el) => (comment = el)}

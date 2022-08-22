@@ -18,10 +18,11 @@
   align-items: center;
   position: fixed;
   top: 0;
+  z-index: 1;
 }
 
 .home > header .headerInner {
-  max-width: 900px;
+  max-width: 1000px;
   width: 100%;
   display: flex;
   justify-content: space-evenly;
@@ -72,7 +73,7 @@
 
 .home-main {
   width: 80%;
-  max-width: 700px;
+  max-width: 1000px;
   color: var(--white);
   background-color: var(--base2);
   min-height: 90vh;
