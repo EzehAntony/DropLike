@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import Post from "../components/Post";
 import "./Home.css";
 import Footer from "../components/Footer";
@@ -11,10 +11,12 @@ import axios from "axios";
 import { useEffect } from "react";
 import { toast, Toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { TweenMax } from "gsap";
 function Home() {
   document.title = "Homepage";
   const user = userStore((state) => state.user[0]);
 
+  //**************UseState*************//
   const [loading, setLoading] = useState(null);
   const [data, setData] = useState(null);
   const [userFriends, setUserFriends] = useState([]);
@@ -23,6 +25,8 @@ function Home() {
   const [textPost, setTextPost] = useState("");
 
   const { id } = useParams();
+
+  //**************Fetch Functions*************//
 
   const fetchData = async () => {
     axios({
@@ -106,6 +110,8 @@ function Home() {
       });
   };
 
+  //**************Fetch UseEffect*************//
+
   useEffect(() => {
     fetchUser();
   }, []);
@@ -122,9 +128,21 @@ function Home() {
     }
   }, [userFriends]);
 
+  //**************UseRef*************//
+  let header = useRef(null);
+  let footer = useRef(null);
+
+  //*************Gsap UseEffect**************//
+  useEffect(() => {
+    TweenMax.from(header, 0.8, {
+      y: -20,
+      opacity:0
+    });
+  }, []);
+
   return (
     <div className="home">
-      <header>
+      <header ref={(el) => (header = el)}>
         <div className="headerInner">
           <img src="/box.svg" className="logo" alt="" />
           <input

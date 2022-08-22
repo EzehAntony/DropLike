@@ -9,6 +9,9 @@
   flex-direction: column;
   align-items: center;
   justify-self: center;
+  
+  
+
 }
 
 .profile .header {
@@ -29,6 +32,8 @@
   max-width: 900px;
   margin-bottom: 40px;
   border-color: var(--white);
+  overflow-x: hidden;
+
 }
 
 .profile .profileRing {
