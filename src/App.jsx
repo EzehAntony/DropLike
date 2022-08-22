@@ -15,6 +15,7 @@ import Profile from "./pages/Profile";
 import Chats from "./pages/Chats";
 import Search from "./pages/Search";
 import userStore from "./User";
+import NewPost from "./pages/NewPost";
 
 const App = () => {
   const user = userStore((state) => state.user[0]);
@@ -33,6 +34,7 @@ const App = () => {
           {!user && <Route path={"/search"} element={<Login />} />}
           {!user && <Route path={"/chats"} element={<Chats />} />}
           <Route path={"/chats"} element={<Chats />} />
+          <Route path={"/newpost"} element={<NewPost />} />
         </Routes>
       </div>
     </Router>

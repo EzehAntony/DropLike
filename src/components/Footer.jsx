@@ -21,7 +21,7 @@ function Footer() {
         </div>
       </Link>
 
-      <Link to="/home">
+      <Link to="/newpost">
         <img src="/add.svg" alt="" />
       </Link>
       <Link to="/home">

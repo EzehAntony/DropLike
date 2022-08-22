@@ -161,7 +161,8 @@
   font-size: 13px;
 }
 .profile .links p:hover {
-  color: var(--black);
+  color: var(--white);
+  background-color: var(--blue);
   transition: 0.4s;
 }
 

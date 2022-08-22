@@ -102,7 +102,6 @@ function Home() {
           autoClose: 1000,
           isLoading: false,
           type: "warning",
-          
         });
       });
   };
@@ -139,14 +138,12 @@ function Home() {
         </div>
       </header>
 
-
       <div className="split">
         <div className="home-main">
           {!userFriends && "Add friends to view posts"}
           {timeline &&
             timeline.map((post, index) => <Post data={post} key={index} />)}
           {loading && <Loading />}
-          <Post/>
         </div>
 
         <div className="home-other">
@@ -158,7 +155,7 @@ function Home() {
       </div>
 
       <Footer />
-      <ToastContainer/>
+      <ToastContainer />
     </div>
   );
 }

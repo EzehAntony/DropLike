@@ -17,7 +17,7 @@ function Profile() {
   const [postData, setPostData] = useState(null);
   const [postLoading, setPostLoading] = useState(false);
   const [postError, setPostError] = useState(null);
-  const [follow, setFollow] = useState(null);
+  const [follow, setFollow] = useState("Follow");
   const [followLoading, setFollowLoading] = useState(null);
   const user = userStore((state) => state.user[0]);
   const { id } = useParams();
@@ -66,12 +66,6 @@ function Profile() {
         setLoading(false);
         setError(null);
         setProfile((prev) => ({ ...prev, user: res.data }));
-
-        if (profile.user.followers.includes(user._id)) {
-          setFollow("Unfollow");
-        } else {
-          setFollow("Follow");
-        }
       })
       .catch((err) => {
         setLoading(false);
@@ -164,6 +158,11 @@ function Profile() {
   useEffect(() => {
     if (profile.user !== null) {
       fetchFrieneds();
+      if (profile.user.followers.includes(user._id)) {
+        setFollow("Unfollow");
+      } else {
+        setFollow("Follow");
+      }
     }
   }, [profile.user]);
 
@@ -211,7 +210,7 @@ function Profile() {
         {user._id !== id && (
           <div className="buttonContainer">
             <button className="follow" onClick={followClick}>
-              {data && follow} {!data && "Follow"}
+              {data && follow} {!data && follow}
             </button>
             <button className="message">Message</button>
             <img src="/add.svg" className="suggested" alt="" />
