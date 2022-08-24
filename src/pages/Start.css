@@ -18,15 +18,33 @@
 .start .logo {
   width: 100px;
   margin: 0 0 20px 0;
-  
-  animation: logo 1s infinite alternate;
 }
 
-@keyframes logo {
-  from {
-    transform: translateY(-10px);
-  }
-  to {
-    transform: translateY(10px);
-  }
+.overlay {
+  background-color: transparent;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  overflow-y: hidden;
+
+}
+
+.overlay .firstDiv {
+  width: 35%;
+  height: 100vh;
+  background-color: var(--yellow);
+}
+.overlay .secondDiv {
+  width: 35%;
+  height: 100vh;
+  background-color: var(--yellow);
+}
+.overlay .thirdDiv {
+  width: 35%;
+  height: 100vh;
+  background-color: var(--yellow);
 }

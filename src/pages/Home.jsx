@@ -30,7 +30,7 @@ function Home() {
 
   const { id } = useParams();
 
-  //**************Fetch Functions*************//
+  //**************Fetch Functions*************//  
 
   const fetchData = async () => {
     setLoading(true);

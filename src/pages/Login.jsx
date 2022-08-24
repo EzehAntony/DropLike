@@ -1,6 +1,7 @@
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useRef } from "react";
 import { useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { TimelineLite, Power3 } from "gsap";
 import axios from "axios";
 import "./Login.css";
 import { ToastContainer, toast } from "react-toastify";
@@ -61,10 +62,24 @@ const Login = () => {
       });
     }
   };
+
+  let logo = useRef(null);
+  let form = useRef(null);
+  let button = useRef(null);
+  let text = useRef(null);
+  let input = useRef(null);
+  const t1 = new TimelineLite({ duration: 0.8, ease: Power3.easeIn });
+
+  useEffect(() => {
+    t1.from(logo, { y: -20, opacity: 0 }, 0.2)
+      .from(form, { y: 20, opacity: 0 }, 0.4)
+      .from(button, { opacity: 0, x: -20 }, 0.6)
+      .from(text, { opacity: 0, y: 20 }, 0.8);
+  }, []);
   return (
     <div className="login">
-      <img src="/logo4.png" alt="" />
-      <form onSubmit={submit}>
+      <img ref={(el) => (logo = el)} src="/logo4.png" alt="" />
+      <form ref={(el) => (form = el)} onSubmit={submit}>
         <input
           autoComplete="true"
           type="text"
@@ -91,11 +106,11 @@ const Login = () => {
           }
           required={true}
         />
-        <button type="submit">
+        <button ref={(el) => (button = el)} type="submit">
           <ClapSpinner size={20} loading={loading} />
           {!loading && "Login"}
         </button>
-        <h3>
+        <h3 ref={(el) => (text = el)}>
           Don't have an account? <Link to="/register">Register</Link>
         </h3>
       </form>

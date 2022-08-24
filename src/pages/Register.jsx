@@ -1,7 +1,8 @@
 //React Imports
-import React, { useState, useContext, useEffect } from "react";
+import React, { useState, useContext, useEffect, useRef } from "react";
 import "./Register.css";
 import { Link, useNavigate } from "react-router-dom";
+import { TimelineLite, Power3 } from "gsap";
 
 //Toast imports
 import { ToastContainer, toast } from "react-toastify";
@@ -11,9 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 
 //Spinner kit import
-import {ClapSpinner} from "react-spinners-kit"
-
-
+import { ClapSpinner } from "react-spinners-kit";
 
 function Register() {
   document.title = "DropLike Register";
@@ -73,11 +72,30 @@ function Register() {
     }
   };
 
+  //***********UseRef*****************//
+
+  let logo = useRef(null);
+  let form = useRef(null);
+  let button = useRef(null);
+  let text = useRef(null);
+
+  //************Gsap TImeline*************//
+  const t1 = new TimelineLite({ duration: 0.8, ease: Power3.easeIn });
+
+  //************UseEffect for Gsap*************//
+
+  useEffect(() => {
+    t1.from(logo, { y: -20, opacity: 0 }, 0.2)
+      .from(form, { y: 20, opacity: 0 }, 0.4)
+      .from(button, { opacity: 0, x: -20 }, 0.6)
+      .from(text, { opacity: 0, y: 20 }, 0.8);
+  }, []);
+
   return (
     <div className="register">
-      <img src="/logo4.png" alt="" />
+      <img ref={(el) => (logo = el)} src="/logo4.png" alt="" />
 
-      <form onSubmit={submit}>
+      <form ref={(el) => (form = el)} onSubmit={submit}>
         <input
           type="text"
           placeholder="firstname"
@@ -133,11 +151,11 @@ function Register() {
           required={true}
         />
 
-        <button type="submit" onSubmit={submit}>
+        <button type="submit" ref={(el) => (button = el)} onSubmit={submit}>
           {!loading && "Sign Up"}
-          <ClapSpinner  loading={loading} />
+          <ClapSpinner size={15} loading={loading} />
         </button>
-        <h3>
+        <h3 ref={(el) => (text = el)}>
           Already have an account? <Link to="/login">login</Link>
         </h3>
       </form>
