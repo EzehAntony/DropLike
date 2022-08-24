@@ -12,6 +12,7 @@ function NewPost() {
   let body = useRef(null);
   let profilePicture = useRef(null);
   let text = useRef(null);
+  let button = useRef(null);
 
   //*************UseEffect*************//
   useEffect(() => {
@@ -35,7 +36,14 @@ function NewPost() {
       opacity: 0,
       delay: 0.6,
     });
+    TweenMax.from(button, 0.8, {
+      x: 20,
+      opacity: 0,
+      delay: 1,
+    });
   }, []);
+
+
   return (
     <div className="newPost">
       <header ref={(el) => (header = el)}>
@@ -55,6 +63,8 @@ function NewPost() {
         name=""
         draggable={false}
       ></textarea>
+
+      <button ref={(el) => button = el} className="postButton">Post</button>
 
       <Footer />
     </div>

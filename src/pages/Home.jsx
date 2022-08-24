@@ -21,7 +21,7 @@ function Home() {
   const [loading, setLoading] = useState(null);
   const [data, setData] = useState(null);
   const [userFriends, setUserFriends] = useState([]);
-  const [timeline, setTimeline] = useState([]);
+  const [timeline, setTimeline] = useState(null);
   const [error, setError] = useState(null);
   const [textPost, setTextPost] = useState("");
 
@@ -36,7 +36,7 @@ function Home() {
       withCredentials: true,
     })
       .then((res) => {
-        setTimeline(res.data);
+        setTimeline(res.data.reverse());
       })
       .catch((err) => {
         console.log(err);
@@ -120,6 +120,7 @@ function Home() {
   useEffect(() => {
     if (data !== null) {
       fetchFriends();
+      console.log(timeline)
     }
   }, [data]);
 
@@ -159,8 +160,9 @@ function Home() {
       <div className="split">
         <div className="home-main">
           {!userFriends && "Add friends to view posts"}
-          {timeline &&
-            timeline.map((post, index) => <Post data={post} key={index} />)}
+          {timeline?.map((post, index) => (
+              <Post data={post} key={index} />
+            ))}
           {loading && <Loading />}
         </div>
       </div>

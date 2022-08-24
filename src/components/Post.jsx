@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import "./Post.css";
 import axios from "axios";
 import userStore from "../User";
-import { TweenMax, Power3 } from "gsap";
+import { TweenMax, TimelineLite, Power3 } from "gsap";
 
 function Post({ data, loading }) {
   //*****************UserStore*******************//
@@ -54,7 +54,7 @@ function Post({ data, loading }) {
           console.log(res.data);
         })
         .catch((err) => {
-          setLikee("unlike");
+          setLikee("liked");
         });
     }
   };
@@ -81,20 +81,24 @@ function Post({ data, loading }) {
   let deleteRef = useRef(null);
 
   //**************UseEffect for Gsap*****************//
+  const t1 = new TimelineLite();
   useEffect(() => {
-    TweenMax.from(post, 0.8, {
-      opacity: 0,
-    });
+    t1.from(post, 0.8, { opacity: 0 })
+      .from(profilePicture, 0.8, {
+        opacity: 0,
+        y: 20,
+        delay: 0.4,
+      })
+      .from(userRef, 0.8, {
+        opacity: 0,
+        y: 20,
+        delay: 0.6,
+      });
 
-    TweenMax.from(profilePicture, 0.8, {
+    /*     TweenMax.from(caption, 0.8, {
       opacity: 0,
       y: 20,
-      delay: 0.2,
-    });
-    TweenMax.from(caption, 0.8, {
-      opacity: 0,
-      y: 20,
-      delay: 0.6,
+      delay: -0.4,
     });
     TweenMax.from(image, 0.8, {
       opacity: 0,
@@ -115,7 +119,7 @@ function Post({ data, loading }) {
       opacity: 0,
       y: 20,
       delay: 1.2,
-    });
+    }); */
   }, []);
 
   return (
@@ -130,8 +134,8 @@ function Post({ data, loading }) {
         )}
 
         {userProfile && (
-          <div className="username">
-            <p ref={(el) => (userRef = el)}>{userProfile.username}</p>
+          <div ref={(el) => (userRef = el)} className="username">
+            <h3>{userProfile.username}</h3>
             {loading && "fetching..."}
           </div>
         )}

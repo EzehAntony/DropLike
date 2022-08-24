@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import {
   BrowserRouter as Router,
   Navigate,
@@ -14,11 +14,15 @@ import Home from "./pages/Home";
 import Profile from "./pages/Profile";
 import Chats from "./pages/Chats";
 import Search from "./pages/Search";
-import userStore from "./User";
 import NewPost from "./pages/NewPost";
+import userStore from "./User";
 
 const App = () => {
   const user = userStore((state) => state.user[0]);
+  useEffect(
+    () => window.scrollTo(0, 0),
+    [Home, Profile, Chats, Search, NewPost]
+  );
   return (
     <Router>
       <div className="App">

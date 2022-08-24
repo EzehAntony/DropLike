@@ -43,8 +43,7 @@ function Profile() {
       .then((res) => {
         setPostLoading(false);
         setPostError(null);
-        setProfile({ ...profile, posts: res.data });
-        return res;
+        setProfile({ ...profile, posts: res.data.reverse() });
       })
       .catch((err) => {
         setPostLoading(false);
@@ -186,11 +185,11 @@ function Profile() {
   useEffect(() => {
     TweenMax.from(headerRef, 0.8, {
       opacity: 0,
-      y: -20,
+      y: -50,
     });
     TweenMax.from(profilePictureRef, 0.8, {
       opacity: 0,
-      y: 20,
+      y: 50,
       delay: 0.2,
     });
     TweenMax.from(usernameRef, 0.8, {
@@ -315,7 +314,9 @@ function Profile() {
 
       <div ref={(el) => (content = el)} className="inner">
         {value === "posts" &&
-          profile.posts?.map((post, index) => <Post data={post} key={index} />)}
+          profile.posts
+            ?.reverse()
+            .map((post, index) => <Post data={post} key={index} />)}
 
         {value === "followers" && (
           <div className="followersWrapper">
