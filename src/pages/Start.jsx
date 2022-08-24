@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect } from "react";
+import { ClapSpinner } from "react-spinners-kit";
 
 function Start() {
   document.title = "DropLike Welcome!";
@@ -16,7 +17,7 @@ function Start() {
         theme: "colored",
         closeButton: false,
         onClose: () => {
-         navigate("/register");
+          navigate("/register");
         },
         autoClose: 1500,
         icon: "",
@@ -29,6 +30,7 @@ function Start() {
     <div className="start">
       <img src="/logo4.png" className="logo" alt="" />
       <h3>droplike . . .</h3>
+
 
       <ToastContainer />
     </div>

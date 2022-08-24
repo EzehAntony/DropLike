@@ -11,14 +11,12 @@ import "react-toastify/dist/ReactToastify.css";
 //import axios (lib to fetch data)
 import axios from "axios";
 import { TweenMax, Power3 } from "gsap";
+import { ClapSpinner } from "react-spinners-kit";
 
 function Profile() {
   const { id } = useParams();
 
   //********************UseStates***************//
-  const [postData, setPostData] = useState(null);
-  const [postLoading, setPostLoading] = useState(false);
-  const [postError, setPostError] = useState(null);
   const [follow, setFollow] = useState("Follow");
   const [followLoading, setFollowLoading] = useState(null);
   const user = userStore((state) => state.user[0]);
@@ -26,72 +24,44 @@ function Profile() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [value, setValue] = useState([]);
-  const [profile, setProfile] = useState({
-    user: null,
-    posts: null,
-    userFollowers: [],
-    userFollowings: [],
-  });
+  const [profile, setProfile] = useState(null);
+  const [post, setPost] = useState(null);
 
   //************Fetch Functions************//
-  const timeline = async () => {
+  const Fetchposts = async () => {
+    setLoading(true);
     await axios({
       method: "GET",
-      url: `https://droplikebackend.herokuapp.com/api/post/get/all/${id}`,
+      url: `https://droplikebackend.herokuapp.com/api/post/get/all/${user._id}`,
       withCredentials: true,
     })
       .then((res) => {
-        setPostLoading(false);
-        setPostError(null);
-        setProfile({ ...profile, posts: res.data.reverse() });
+        setLoading(false);
+
+        setPost(res.data);
       })
-      .catch((err) => {
-        setPostLoading(false);
-        setPostError(err);
+      .catch((error) => {
+        setLoading(false);
       });
   };
-  const fetchuserProfile = async () => {
-    setLoading(true);
-    axios({
+
+  const fetchUser = async () => {
+    await axios({
       method: "POST",
       url: `https://droplikebackend.herokuapp.com/api/user/get/${user._id}`,
       withCredentials: true,
       data: {
-        userId: `${id}`,
+        userId: id,
       },
     })
       .then((res) => {
-        setLoading(false);
-        setError(null);
-        setProfile((prev) => ({ ...prev, user: res.data }));
+        setProfile(res.data);
       })
-      .catch((err) => {
-        setLoading(false);
-        setError(err);
+      .catch((error) => {
+        console.log(error);
       });
   };
-  const fetchFrieneds = async () => {
-    const promise = Promise.all(
-      profile.user.followers.map((e) => {
-        axios({
-          method: "POST",
-          url: `https://droplikebackend.herokuapp.com/api/user/get/${id}`,
-          withCredentials: true,
-          data: {
-            userId: e,
-          },
-        })
-          .then((res) => {
-            setProfile((prev) => ({
-              ...profile,
-              userFollowers: [...prev.userFollowers, res.data],
-            }));
-          })
-          .catch((err) => {});
-      })
-    );
-    return promise;
-  };
+
   const followClick = async (e) => {
     e.preventDefault();
     if (follow === "Unfollow") {
@@ -132,7 +102,7 @@ function Profile() {
   };
 
   //button clicks
-  const post = (e) => {
+  const posts = (e) => {
     e.preventDefault();
     setValue("posts");
   };
@@ -149,24 +119,13 @@ function Profile() {
 
   //Fetch the user's profile
   useEffect(() => {
-    fetchuserProfile();
-    timeline();
-  }, [id, follow]);
+    fetchUser();
+    Fetchposts();
+  }, [id]);
 
   useEffect(() => {
     setValue("posts");
   }, []);
-
-  useEffect(() => {
-    if (profile.user !== null) {
-      fetchFrieneds();
-      if (profile.user.followers.includes(user._id)) {
-        setFollow("Unfollow");
-      } else {
-        setFollow("Follow");
-      }
-    }
-  }, [profile.user]);
 
   //*************UseRef*************//
   let headerRef = useRef(null);
@@ -251,30 +210,30 @@ function Profile() {
           {data && data.firstname} {data && data.lastname}
         </div>
         <div ref={(el) => (usernameRef = el)} className="profileUsername">
-          {profile.user && `@${profile.user.username} `}
+          {profile && `@${profile.username} `}
           {followLoading && "Loading..."}
           {loading && "fetching..."}
         </div>
 
         <div className="profileNumbers">
-          <div ref={(el) => (followersRef = el)} className="following">
+          <div ref={(el) => (followingsRef = el)} className="following">
             <p>
-              {profile.user && profile.user.followings.length}
-              {!profile.user && "..."}
+              {profile && profile.followings.length}
+              {!profile && "..."}
             </p>
             <span>Followings</span>
           </div>
-          <div ref={(el) => (followingsRef = el)} className="followers">
+          <div ref={(el) => (followersRef = el)} className="followers">
             <p>
-              {profile.user && profile.user.followers.length}
+              {profile && profile.followers.length}
 
-              {!profile.user && "..."}
+              {!profile && "..."}
             </p>
             <span>Followers</span>
           </div>
           <div ref={(el) => (postsRef = el)} className="posts">
             <p>
-              {profile.posts && profile.posts.length} {!profile.posts && "..."}
+              {post && post.length} {!post && "..."}
             </p>
             <span>Posts</span>
           </div>
@@ -293,7 +252,7 @@ function Profile() {
       <hr ref={(el) => (hrRef = el)} />
 
       <div className="links">
-        <p ref={(el) => (postButtonRef = el)} className="posts" onClick={post}>
+        <p ref={(el) => (postButtonRef = el)} className="posts" onClick={posts}>
           Posts
         </p>
         <p
@@ -313,21 +272,22 @@ function Profile() {
       </div>
 
       <div ref={(el) => (content = el)} className="inner">
+        <ClapSpinner loading={loading} />
         {value === "posts" &&
-          profile.posts
+          post
             ?.reverse()
             .map((post, index) => <Post data={post} key={index} />)}
 
         {value === "followers" && (
           <div className="followersWrapper">
-            {profile.userFollowers?.map((post, index) => (
+            {profile.followers?.map((post, index) => (
               <Friend data={post} key={index} />
             ))}
           </div>
         )}
         {value === "followings" && (
           <div className="followersWrapper">
-            {profile.userFollowings?.map((post, index) => (
+            {profile.followings?.map((post, index) => (
               <Friend data={post} key={index} />
             ))}
           </div>

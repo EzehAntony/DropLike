@@ -11,7 +11,7 @@
 
 .login img {
   width: 100px;
-} 
+}
 
 .login form {
   width: 400px;
@@ -34,7 +34,7 @@
   border: 0;
   border-radius: 10px;
   outline-color: var(--yellow);
-  color:  var(--white);
+  color: var(--white);
   transition: 0.2s;
 }
 
@@ -42,7 +42,7 @@
   box-shadow: 2px 2px 5px e3229f42;
 }
 .login form input::placeholder {
-  color:  var(--white);
+  color: var(--white);
   text-transform: capitalize;
 }
 
@@ -54,19 +54,23 @@
 }
 
 .login form button {
-  background-color: var(--yellow)  ;
-  padding: 15px 60px;
+  background-color: var(--yellow);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-width: 50%;
+  height: 40px;
   border: 0;
   cursor: pointer;
   margin: 10px 0;
-  color:  var(--black);
+  color: var(--black);
   border-radius: 50px;
 }
 
 .login h3 {
   font-size: 14px;
   margin: 10px;
-  color:  var(--white);
+  color: var(--white);
 }
 
 .login a {
@@ -81,7 +85,7 @@
 }
 
 .login .formTwo p {
-  color:  var(--white);
+  color: var(--white);
   font-weight: 600;
 }
 

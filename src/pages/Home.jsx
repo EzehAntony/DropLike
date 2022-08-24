@@ -12,76 +12,45 @@ import { useEffect } from "react";
 import { toast, Toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { TweenMax } from "gsap";
+import { ClapSpinner } from "react-spinners-kit";
 
 function Home() {
   document.title = "Homepage";
   const user = userStore((state) => state.user[0]);
 
   //**************UseState*************//
-  const [loading, setLoading] = useState(null);
+  const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
   const [userFriends, setUserFriends] = useState([]);
   const [timeline, setTimeline] = useState(null);
   const [error, setError] = useState(null);
   const [textPost, setTextPost] = useState("");
+  const [postLoading, setPostLoading] = useState(false);
+  const [postSuccess, setPostSuccess] = useState(false);
 
   const { id } = useParams();
 
   //**************Fetch Functions*************//
 
   const fetchData = async () => {
+    setLoading(true);
     axios({
       url: `https://droplikebackend.herokuapp.com/api/post/timeline/${id}`,
       method: "GET",
       withCredentials: true,
     })
       .then((res) => {
+        setLoading(false);
         setTimeline(res.data.reverse());
       })
       .catch((err) => {
-        console.log(err);
+        setLoading(false);
       });
   };
-  const fetchUser = async () => {
-    await axios({
-      method: "POST",
-      url: `https://droplikebackend.herokuapp.com/api/user/get/${id}`,
-      withCredentials: true,
-      data: {
-        userId: id,
-      },
-    })
-      .then((res) => {
-        setData(res.data);
-      })
-      .catch((err) => {});
-  };
-  const fetchFriends = async () => {
-    const promise = Promise.all(
-      data.followings.map((e) => {
-        axios({
-          method: "POST",
-          url: `https://droplikebackend.herokuapp.com/api/user/get/${id}`,
-          withCredentials: true,
-          data: {
-            userId: e,
-          },
-        })
-          .then((res) => {
-            setUserFriends((prev) => [...prev, res.data]);
-          })
-          .catch((err) => {});
-      })
-    );
-    return promise;
-  };
+
   const textPostFunction = async (e) => {
+    setPostLoading(true);
     e.preventDefault();
-    toast.loading("Posting...", {
-      theme: "colored",
-      type: "info",
-      toastId: "post",
-    });
     await axios({
       url: "https://droplikebackend.herokuapp.com/api/post/create",
       method: "POST",
@@ -92,21 +61,16 @@ function Home() {
       },
     })
       .then((res) => {
-        toast.update("post", {
-          render: "Posted",
-          theme: "colored",
-          autoClose: 1000,
-          isLoading: false,
-          type: "success",
-        });
+        setPostLoading(false);
+        setPostSuccess(true);
+        console.log("done");
       })
       .catch((err) => {
-        toast.update("post", {
-          render: "Failed to post",
-          pauseOnFocusLoss: false,
-          autoClose: 1000,
-          isLoading: false,
-          type: "warning",
+        setPostLoading(false);
+        toast.error("Unable to post", {
+          autoClose: 2000,
+          hideProgressBar: true,
+          theme: "colored",
         });
       });
   };
@@ -114,21 +78,8 @@ function Home() {
   //**************Fetch UseEffect*************//
 
   useEffect(() => {
-    fetchUser();
-  }, []);
-
-  useEffect(() => {
-    if (data !== null) {
-      fetchFriends();
-      console.log(timeline)
-    }
-  }, [data]);
-
-  useEffect(() => {
-    if (userFriends.length !== 0) {
-      fetchData();
-    }
-  }, [userFriends]);
+    fetchData();
+  }, [postSuccess]);
 
   //**************UseRef*************//
   let headerRef = useRef(null);
@@ -152,7 +103,8 @@ function Home() {
             placeholder={`${user.username}, what's new?`}
           />
           <button onClick={textPostFunction} className="homePost">
-            Post
+            {!postLoading && "Post"}
+            <ClapSpinner size={15} loading={postLoading} />
           </button>
         </div>
       </header>
@@ -160,10 +112,9 @@ function Home() {
       <div className="split">
         <div className="home-main">
           {!userFriends && "Add friends to view posts"}
-          {timeline?.map((post, index) => (
-              <Post data={post} key={index} />
-            ))}
-          {loading && <Loading />}
+          {timeline &&
+            timeline.map((post, index) => <Post data={post} key={index} />)}
+          {<ClapSpinner loading={loading} />}
         </div>
       </div>
 

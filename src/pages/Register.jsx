@@ -10,14 +10,13 @@ import "react-toastify/dist/ReactToastify.css";
 //axios
 import axios from "axios";
 
-//user store
-import userStore from "../User";
+//Spinner kit import
+import {ClapSpinner} from "react-spinners-kit"
+
+
 
 function Register() {
   document.title = "DropLike Register";
-
-  //User store
-  const addUser = userStore((state) => state.addRegisteredUser);
 
   //Input state
   const [input, setInput] = useState({
@@ -28,15 +27,13 @@ function Register() {
   });
 
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   //Form Submit function
   const submit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
-      toast.loading("Loading", {
-        toastId: "register",
-        type: "info",
-      });
       await axios({
         url: "https://droplikebackend.herokuapp.com/api/auth/register",
         method: "POST",
@@ -48,8 +45,8 @@ function Register() {
           password: input.password,
         },
       }).then((res) => {
-        toast.update("register", {
-          render: "Registered",
+        setLoading(false);
+        toast.success("Registered", {
           type: "success",
           isLoading: false,
           theme: "colored",
@@ -60,18 +57,17 @@ function Register() {
         });
       });
     } catch (error) {
-      console.log(error);
+      setLoading(false);
       let message = "";
       if (error.response.data) {
         message = error.response.data;
       } else {
         message = "error";
       }
-      toast.update("register", {
-        render: `${message}`,
+      toast(message, {
         theme: "colored",
         type: "error",
-        autoClose: 3000,
+        autoClose: 2000,
         isLoading: false,
       });
     }
@@ -138,7 +134,8 @@ function Register() {
         />
 
         <button type="submit" onSubmit={submit}>
-          Sign Up
+          {!loading && "Sign Up"}
+          <ClapSpinner  loading={loading} />
         </button>
         <h3>
           Already have an account? <Link to="/login">login</Link>

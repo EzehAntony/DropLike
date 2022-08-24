@@ -6,6 +6,7 @@ import "./Login.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import userStore from "../User";
+import { ClapSpinner } from "react-spinners-kit";
 
 const Login = () => {
   document.title = "DropLike Login";
@@ -14,19 +15,16 @@ const Login = () => {
   const [inputValue, setInputValue] = useState({
     username: "",
     password: "",
-  });  
+  });
 
   const user = userStore((state) => state.user[0]);
   const addUser = userStore((state) => state.addUser);
+  const [loading, setLoading] = useState(false);
 
   const submit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
-      toast.loading("logging in...", {
-        theme: "colored",
-        type: "info",
-        toastId: "login",
-      });
       await axios({
         url: "https://droplikebackend.herokuapp.com/api/auth/login",
         method: "POST",
@@ -36,30 +34,30 @@ const Login = () => {
           password: inputValue.password,
         },
       }).then((res) => {
+        setLoading(false);
         addUser(res.data);
-        toast.update("login", {
-          render: "Logged in",
+        toast.success("Logged In", {
           theme: "colored",
           autoClose: 2000,
+          hideProgressBar: true,
           isLoading: false,
-          type: "success",
           onClose: () => {
             navigate(`/home/${user._id}`);
           },
         });
       });
     } catch (error) {
+      setLoading(false);
       let message = "";
       if (error.response.data) {
         message = error.response.data;
       } else {
         message = error.message;
       }
-      toast.update("login", {
-        render: `${message}`,
-        type: "error",
+      toast.error(message, {
         autoClose: 3000,
-        isLoading: false,
+        hideProgressBar: true,
+        theme: "colored",
       });
     }
   };
@@ -93,7 +91,10 @@ const Login = () => {
           }
           required={true}
         />
-        <button type="submit">Log In</button>
+        <button type="submit">
+          <ClapSpinner size={20} loading={loading} />
+          {!loading && "Login"}
+        </button>
         <h3>
           Don't have an account? <Link to="/register">Register</Link>
         </h3>
