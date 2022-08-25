@@ -32,7 +32,7 @@ function Profile() {
     setLoading(true);
     await axios({
       method: "GET",
-      url: `https://droplikebackend.herokuapp.com/api/post/get/all/${user._id}`,
+      url: `https://droplikebackend.herokuapp.com/api/post/get/all/${id}`,
       withCredentials: true,
     })
       .then((res) => {
