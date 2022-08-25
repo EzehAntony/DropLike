@@ -120,6 +120,8 @@ function Profile() {
   //Fetch the user's profile
   useEffect(() => {
     fetchUser();
+  }, [id]);
+  useEffect(() => {
     Fetchposts();
   }, [id]);
 
