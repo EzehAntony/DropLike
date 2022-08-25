@@ -30,7 +30,7 @@ function Home() {
 
   const { id } = useParams();
 
-  //**************Fetch Functions*************//  
+  //**************Fetch Functions*************//
 
   const fetchData = async () => {
     setLoading(true);
@@ -110,11 +110,27 @@ function Home() {
       </header>
 
       <div className="split">
-        <div className="home-main">
+        <div className="homeMain">
           {!userFriends && "Add friends to view posts"}
           {timeline &&
             timeline.map((post, index) => <Post data={post} key={index} />)}
           {<ClapSpinner loading={loading} />}
+        </div>
+
+        <div className="right">
+          <div className="followers">
+            <h1>followers</h1>
+            {data && user.followers.map((e, index) => (
+              <Friends data={e} key={index} />
+            ))}
+          </div>
+          <div className="followings">
+            <h1>followings</h1>
+            {data && user.followings.map((e, index) => (
+              <Friends data={e} key={index} />
+            ))}
+            <button className="addFriends">add friends</button>
+          </div>
         </div>
       </div>
 

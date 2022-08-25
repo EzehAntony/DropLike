@@ -1,12 +1,14 @@
 .home {
   background-color: var(--base);
   width: 100%;
-  min-height: 900px;
+  min-height: 600px;
+  height: 100vh;
   padding: 20px 5%;
-  max-width: 300px;
+  max-width: 2000px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: hidden;
 }
 
 .home header {
@@ -65,47 +67,71 @@
 
 .home > .split {
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   width: 100%;
   margin-top: 80px;
+  height: calc(100vh - 80px);
 }
 
-.home-main {
-  width: 80%;
-  max-width: 600px;
-  color: var(--white);
-  background-color: var(--base2);
+.home .homeMain {
+  width: 90%;
+  max-width: 700px;
   min-height: 90vh;
-  border-radius: 10px;
+  overflow-y: hidden;
   display: flex;
   flex-direction: column;
+  content: center;
   justify-content: center;
   align-items: center;
-  margin-right: 20px;
-  padding: 20px;
 }
 
-.home-other {
-  background-color: var(--base2);
-  width: 20%;
-  min-width: 300px;
+.homeMain:hover {
+  overflow-y: overlay;
+}
+
+.home .right {
+  width: 40%;
   max-width: 400px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  border-radius: 10px;
-  max-height: 100vh;
-  min-height: 90vh;
-  margin: 0 10px;
-  padding: 10px;
+  max-height: 90vh;
+  background-color: var(--base);
+  overflow-x: hidden;
 }
 
-.home > .main {
-  background-color: transparent;
-  margin: 20px 10px;
-  display: flex;
-  justify-content: space-around;
+.home .right h1 {
+  color: white;
+  font-size: 15px;
+  text-align: center;
+  text-transform: capitalize;
+  margin: 20px 0;
+}
+.home .right > div {
+  margin-bottom: 10px;
+  width: 400px;
+  height: 40vh;
+  min-height: 200px;
+  background-color: var(--base2);
   border-radius: 10px;
+  padding: 10px 0;
+  overflow: hidden;
+  background-color: var(--base3);
+}
+
+.home .right > .followings button {
+  background-color: var(--yellow);
+  border: 0;
+  outline: 0;
+  margin: 0;
+  padding: 10px 30px;
+  border-radius: 20px;
+  font-weight: 700;
+  text-transform: capitalize;
+  cursor: pointer;
+}
+
+.home .right > div:hover {
+  overflow-y: overlay;
 }
 
 @media (max-width: 1000px) {
@@ -115,13 +141,15 @@
 
   .home .split {
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   .home-main {
     width: 100%;
   }
 
-  .home-other {
+  .home .right {
     display: none;
   }
 }
