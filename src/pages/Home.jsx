@@ -27,6 +27,7 @@ function Home() {
   const [textPost, setTextPost] = useState("");
   const [postLoading, setPostLoading] = useState(false);
   const [postSuccess, setPostSuccess] = useState(false);
+  const [profile, setProfile] = useState(null);
 
   const { id } = useParams();
 
@@ -45,6 +46,23 @@ function Home() {
       })
       .catch((err) => {
         setLoading(false);
+      });
+  };
+
+  const fetchUser = async () => {
+    await axios({
+      method: "POST",
+      url: `https://droplikebackend.herokuapp.com/api/user/get/${user._id}`,
+      withCredentials: true,
+      data: {
+        userId: id,
+      },
+    })
+      .then((res) => {
+        setProfile(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
       });
   };
 
@@ -81,16 +99,20 @@ function Home() {
     fetchData();
   }, [postSuccess]);
 
+  useEffect(() => {
+    fetchUser();
+  }, [id]);
+
   //**************UseRef*************//
   let headerRef = useRef(null);
 
   //*************Gsap UseEffect**************//
-  useEffect(() => {
+  /*   useEffect(() => {
     TweenMax.from(headerRef, 0.8, {
       y: -20,
       opacity: 0,
     });
-  }, []);
+  }, []); */
 
   return (
     <div className="home">
@@ -120,15 +142,17 @@ function Home() {
         <div className="right">
           <div className="followers">
             <h1>followers</h1>
-            {data && user.followers.map((e, index) => (
-              <Friends data={e} key={index} />
-            ))}
+            {profile &&
+              profile.followers.map((e, index) => (
+                <Friends data={e} key={index} />
+              ))}
           </div>
           <div className="followings">
             <h1>followings</h1>
-            {data && user.followings.map((e, index) => (
-              <Friends data={e} key={index} />
-            ))}
+            {profile &&
+              profile.followings.map((e, index) => (
+                <Friends data={e} key={index} />
+              ))}
             <button className="addFriends">add friends</button>
           </div>
         </div>

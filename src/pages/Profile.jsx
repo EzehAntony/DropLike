@@ -26,6 +26,7 @@ function Profile() {
   const [value, setValue] = useState([]);
   const [profile, setProfile] = useState(null);
   const [post, setPost] = useState(null);
+  const [success, setSuccess] = useState(false);
 
   //************Fetch Functions************//
   const Fetchposts = async () => {
@@ -77,9 +78,11 @@ function Profile() {
         .then((res) => {
           setFollowLoading(false);
           setFollow("Follow");
+          setSuccess(true);
         })
         .catch((err) => {
           setFollowLoading(false);
+          setSuccess(false);
         });
     } else {
       setFollowLoading(true);
@@ -93,14 +96,19 @@ function Profile() {
       })
         .then((res) => {
           setFollowLoading(false);
+          setSuccess(true);
           setFollow("Unfollow");
         })
         .catch((err) => {
           setFollowLoading(false);
+          setSuccess(false);
         });
     }
   };
 
+  /*         if(res.data.followers.includes(user._id)) {
+          setFollow("follow")
+        } */
   //button clicks
   const posts = (e) => {
     e.preventDefault();
@@ -120,7 +128,7 @@ function Profile() {
   //Fetch the user's profile
   useEffect(() => {
     fetchUser();
-  }, [id]);
+  }, [id, success]);
   useEffect(() => {
     Fetchposts();
   }, [id]);
