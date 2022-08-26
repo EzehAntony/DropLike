@@ -2,7 +2,6 @@
   background-color: var(--base);
   width: 100%;
   min-height: 600px;
-  height: 100vh;
   padding: 20px 5%;
   max-width: 2000px;
   display: flex;
