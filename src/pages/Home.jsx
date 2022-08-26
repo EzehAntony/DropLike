@@ -107,12 +107,12 @@ function Home() {
   let headerRef = useRef(null);
 
   //*************Gsap UseEffect**************//
-  /*   useEffect(() => {
+  useEffect(() => {
     TweenMax.from(headerRef, 0.8, {
       y: -20,
       opacity: 0,
     });
-  }, []); */
+  }, []);
 
   return (
     <div className="home">
