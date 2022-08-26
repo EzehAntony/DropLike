@@ -9,9 +9,7 @@
   flex-direction: column;
   align-items: center;
   justify-self: center;
-  
-  
-
+  overflow-y: overlay;
 }
 
 .profile .header {
@@ -33,7 +31,6 @@
   margin-bottom: 40px;
   border-color: var(--white);
   overflow-x: hidden;
-
 }
 
 .profile .profileRing {

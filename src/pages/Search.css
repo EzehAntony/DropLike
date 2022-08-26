@@ -7,6 +7,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  overflow-y: overlay;
 }
 .searchPage > .searchContainer a {
   text-decoration: none;
@@ -54,7 +55,6 @@
 }
 
 @media (min-width: 901px) {
-
   .searchResult {
     display: flex;
     justify-content: center;
@@ -62,5 +62,4 @@
     padding: 20px 0;
     flex-wrap: wrap;
   }
-  
 }

@@ -13,6 +13,7 @@ import { toast, Toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { TweenMax } from "gsap";
 import { ClapSpinner } from "react-spinners-kit";
+import { Link } from "react-router-dom";
 
 function Home() {
   document.title = "Homepage";
@@ -21,12 +22,12 @@ function Home() {
   //**************UseState*************//
   const [loading, setLoading] = useState(false);
   const [data, setData] = useState(null);
-  const [userFriends, setUserFriends] = useState([]);
   const [timeline, setTimeline] = useState(null);
   const [error, setError] = useState(null);
   const [textPost, setTextPost] = useState("");
   const [postLoading, setPostLoading] = useState(false);
   const [postSuccess, setPostSuccess] = useState(false);
+  const [postError, setPostError] = useState(false);
   const [profile, setProfile] = useState(null);
 
   const { id } = useParams();
@@ -35,6 +36,7 @@ function Home() {
 
   const fetchData = async () => {
     setLoading(true);
+    setError(false);
     axios({
       url: `https://droplikebackend.herokuapp.com/api/post/timeline/${id}`,
       method: "GET",
@@ -43,9 +45,11 @@ function Home() {
       .then((res) => {
         setLoading(false);
         setTimeline(res.data.reverse());
+        setError(false);
       })
       .catch((err) => {
         setLoading(false);
+        setError(true);
       });
   };
 
@@ -132,11 +136,11 @@ function Home() {
       </header>
 
       <div className="split">
-        <div className="homeMain">
-          {!userFriends && "Add friends to view posts"}
+        <div className="left">
           {timeline &&
             timeline.map((post, index) => <Post data={post} key={index} />)}
           {<ClapSpinner loading={loading} />}
+          {error && <img className="error" src="/404.svg" />}
         </div>
 
         <div className="right">
@@ -153,7 +157,9 @@ function Home() {
               profile.followings.map((e, index) => (
                 <Friends data={e} key={index} />
               ))}
-            <button className="addFriends">add friends</button>
+            <Link to={"/search"}>
+              <button className="addFriends">add friends</button>
+            </Link>
           </div>
         </div>
       </div>

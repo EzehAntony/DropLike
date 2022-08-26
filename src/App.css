@@ -31,6 +31,8 @@
   max-width: 2000px;
   min-width: 300px;
   background-color: var(--base);
+  overflow-y: overlay;
+
 }
 
 *::-webkit-scrollbar {

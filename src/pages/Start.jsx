@@ -6,7 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { ClapSpinner } from "react-spinners-kit";
 import { TimelineMax, Power3 } from "gsap";
 
-const t1 = new TimelineMax({ ease: Power3.easeOut, duration: 0.8 });
+const t1 = new TimelineMax({ ease: "none", duration: 0.8 });
 
 function Start() {
   document.title = "DropLike Welcome!";
@@ -51,9 +51,16 @@ function Start() {
         },
         1
       )
-      .from(logo, { rotate: 400, duration: 1, onComplete: () => {
-        navigate("/register");
-      }}, 1.2 );
+      .from(
+        logo,
+        {
+          rotate: 400,
+          duration: 1.4,
+          onComplete: () => {
+            navigate("/register");
+          },
+        },
+        1      );
   });
 
   return (
