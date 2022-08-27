@@ -137,11 +137,11 @@ function Home() {
       </header>
 
       <div className="split">
+          {<ClapSpinner loading={loading} />}
         <div className="left">
           {timeline?.map((post, index) => (
             <Post data={post} key={index} />
           ))}
-          {<ClapSpinner loading={loading} />}
           {error && <img className="error" src="/404.svg" />}
           {timeline?.length < 1 && (
             <Link to={"/NewPost"}>
