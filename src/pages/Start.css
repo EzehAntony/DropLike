@@ -10,9 +10,8 @@
 }
 
 .start > h3 {
-  font-weight: 800;
+  font-weight: 700;
   text-transform: uppercase;
-  font-family: cursive;
 }
 
 .start .logo {
@@ -30,7 +29,6 @@
   position: absolute;
   top: 0;
   overflow-y: hidden;
-
 }
 
 .overlay .firstDiv {

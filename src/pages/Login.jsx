@@ -94,7 +94,7 @@ const Login = () => {
           required={true}
         />
         <input
-          type="text"
+          type="password"
           autoComplete="true"
           placeholder="password"
           value={inputValue.password}
