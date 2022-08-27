@@ -145,10 +145,17 @@ function Post({ data, loading }) {
           {data && data.caption}
           {loading && "fetching..."}
         </div>
-        {<img src="/girl.jpg" ref={(el) => (image = el)} className="image" />}
+        {
+          <img
+            alt="girl"
+            src="/girl.jpg"
+            ref={(el) => (image = el)}
+            className="image"
+          />
+        }
 
         <div className="action">
-          {likee == "liked" ? (
+          {likee === "liked" ? (
             <img
               onClick={likeFunc}
               src="/liked.png"

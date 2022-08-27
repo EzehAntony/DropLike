@@ -13,6 +13,7 @@
   -ms-user-select: none;
 }
 
+
 :root {
   --base: black;
   --base2: #131313;
@@ -68,4 +69,11 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+@media (max-width: 1000px) {
+  *::-webkit-scrollbar {
+    width: 0px;
+  }
+
 }

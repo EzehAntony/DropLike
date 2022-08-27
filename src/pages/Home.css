@@ -1,13 +1,12 @@
 .home {
   background-color: var(--base);
   width: 100%;
-  min-height: 600px;
+  min-height: 100vh;
   padding: 20px 5%;
   max-width: 2000px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  overflow-y: hidden;
 }
 
 .home header {
@@ -65,63 +64,32 @@
 }
 
 .home > .split {
-  display: flex;
-  height: calc(100vh - 80px);
-  justify-content: space-around;
   width: 100%;
+  max-width: 800px;
   margin-top: 80px;
-  position: relative;
-}
-
-.home .left {
-  width: 90%;
-  min-height: 80vh;
-  max-width: 700px;
-  overflow: hidden;
-  padding: 0 0 100px 0;
   background-color: var(--base2);
-  border-radius: 10px;
-}
-
-.home .left:hover {
-  overflow-y: overlay;
-}
-
-.error {
-  width: 50%;
-  max-width: 150px
-}
-
-.home .right {
-  width: 40%;
-  max-width: 400px;
+  border-radius: 20px;
+  min-height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
-  max-height: 90vh;
-  background-color: var(--base);
-  overflow-x: hidden;
+  justify-content: center;
+  align-items: center;
 }
 
-.home .right h1 {
-  color: white;
-  font-size: 15px;
-  text-align: center;
-  text-transform: capitalize;
-  margin: 20px 0;
-}
-.home .right > div {
-  margin-bottom: 10px;
-  width: 400px;
-  height: 40vh;
-  min-height: 200px;
-  background-color: var(--base2);
-  border-radius: 10px;
-  padding: 10px 0;
-  overflow: hidden;
-  background-color: var(--base3);
+.home > .left {
+  width: 100%;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.home .right > .followings button {
+.left > img {
+  width: 50%;
+}
+
+.home .left button {
   background-color: var(--yellow);
   border: 0;
   outline: 0;
@@ -133,28 +101,12 @@
   cursor: pointer;
 }
 
-.home .right > div:hover {
-  overflow-y: overlay;
-}
-
-
-
 @media (max-width: 1000px) {
   .home input {
     width: 65%;
   }
 
-  .home .split {
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .home-main {
+  .home .left {
     width: 100%;
-  }
-
-  .home .right {
-    display: none;
   }
 }

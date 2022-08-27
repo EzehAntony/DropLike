@@ -101,6 +101,7 @@ function Home() {
 
   useEffect(() => {
     fetchData();
+    setPostSuccess(false);
   }, [postSuccess]);
 
   useEffect(() => {
@@ -137,30 +138,16 @@ function Home() {
 
       <div className="split">
         <div className="left">
-          {timeline &&
-            timeline.map((post, index) => <Post data={post} key={index} />)}
+          {timeline?.map((post, index) => (
+            <Post data={post} key={index} />
+          ))}
           {<ClapSpinner loading={loading} />}
           {error && <img className="error" src="/404.svg" />}
-        </div>
-
-        <div className="right">
-          <div className="followers">
-            <h1>followers</h1>
-            {profile &&
-              profile.followers.map((e, index) => (
-                <Friends data={e} key={index} />
-              ))}
-          </div>
-          <div className="followings">
-            <h1>followings</h1>
-            {profile &&
-              profile.followings.map((e, index) => (
-                <Friends data={e} key={index} />
-              ))}
-            <Link to={"/search"}>
-              <button className="addFriends">add friends</button>
+          {timeline?.length < 1 && (
+            <Link to={"/NewPost"}>
+              <button className="addPost">Make a post</button>
             </Link>
-          </div>
+          )}
         </div>
       </div>
 
