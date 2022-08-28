@@ -65,27 +65,24 @@
 
 .home > .split {
   width: 100%;
-  max-width: 800px;
+  min-width: 90%;
   margin-top: 80px;
   background-color: var(--base2);
   border-radius: 20px;
   min-height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
 }
 
 .home > .left {
   width: 100%;
   min-height: 600px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+
 }
 
-.left > img {
+.home .left > img {
   width: 50%;
 }
 

@@ -137,20 +137,17 @@ function Home() {
       </header>
 
       <div className="split">
-          {<ClapSpinner loading={loading} />}
-        <div className="left">
-          {timeline?.map((post, index) => (
-            <Post data={post} key={index} />
-          ))}
-          {error && <img className="error" src="/404.svg" />}
-          {timeline?.length < 1 && (
-            <Link to={"/NewPost"}>
-              <button className="addPost">Make a post</button>
-            </Link>
-          )}
-        </div>
+        {<ClapSpinner loading={loading} />}
+        {timeline?.map((post, index) => (
+          <Post data={post} key={index} />
+        ))}
+        {error && <img className="error" src="/404.svg" />}
+        {timeline?.length < 1 && (
+          <Link to={"/NewPost"}>
+            <button className="addPost">Make a post</button>
+          </Link>
+        )}
       </div>
-
       <Footer />
       <ToastContainer />
     </div>
