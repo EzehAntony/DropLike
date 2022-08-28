@@ -76,13 +76,7 @@
   align-items: center;
 }
 
-.home > .left {
-  width: 100%;
-  min-height: 600px;
-
-}
-
-.home .left > img {
+.home > .split  .errorImg {
   width: 50%;
 }
 

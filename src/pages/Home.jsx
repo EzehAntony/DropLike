@@ -141,7 +141,7 @@ function Home() {
         {timeline?.map((post, index) => (
           <Post data={post} key={index} />
         ))}
-        {error && <img className="error" src="/404.svg" />}
+        {error && <img className="errorImg" src="/404.svg" />}
         {timeline?.length < 1 && (
           <Link to={"/NewPost"}>
             <button className="addPost">Make a post</button>
