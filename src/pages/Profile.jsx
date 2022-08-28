@@ -31,6 +31,7 @@ function Profile() {
   //************Fetch Functions************//
   const Fetchposts = async () => {
     setLoading(true);
+    setError(false);
     await axios({
       method: "GET",
       url: `https://droplikebackend.herokuapp.com/api/post/get/all/${id}`,
@@ -38,11 +39,13 @@ function Profile() {
     })
       .then((res) => {
         setLoading(false);
+        setError(false);
 
         setPost(res.data);
       })
       .catch((error) => {
         setLoading(false);
+        setError(true);
       });
   };
 
@@ -283,6 +286,8 @@ function Profile() {
 
       <div ref={(el) => (content = el)} className="inner">
         <ClapSpinner loading={loading} />
+        {error && <img className="errorImg" src="/404.svg" />}
+
         {value === "posts" &&
           post
             ?.reverse()

@@ -4,6 +4,9 @@ import "./Register.css";
 import { Link, useNavigate } from "react-router-dom";
 import { TimelineLite, Power3 } from "gsap";
 
+/*****************Snow flakes******************/
+import Snowfall from "react-snowfall";
+
 //Toast imports
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -159,6 +162,7 @@ function Register() {
           Already have an account? <Link to="/login">login</Link>
         </h3>
       </form>
+      <Snowfall />
       <ToastContainer />
     </div>
   );

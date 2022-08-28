@@ -46,6 +46,11 @@
   text-align: left;
 }
 
+.searchContainer .errorImg {
+  width: 50%;
+  margin: 20px 0;
+}
+
 .searchContainer > input::placeholder {
   color: #ffffff;
 }
@@ -56,10 +61,8 @@
 
 @media (min-width: 901px) {
   .searchResult {
-    display: flex;
     justify-content: center;
     align-items: center;
     padding: 20px 0;
-    flex-wrap: wrap;
   }
 }

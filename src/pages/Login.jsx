@@ -8,6 +8,8 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import userStore from "../User";
 import { ClapSpinner } from "react-spinners-kit";
+import Snowfall from "react-snowfall";
+
 
 const Login = () => {
   document.title = "DropLike Login";
@@ -114,7 +116,7 @@ const Login = () => {
           Don't have an account? <Link to="/register">Register</Link>
         </h3>
       </form>
-
+      <Snowfall />
       <ToastContainer />
     </div>
   );

@@ -27,6 +27,8 @@ function Search() {
         />
 
         <div className="searchResult">
+          {error && <img className="errorImg" src="/404.svg" />}
+
           {data &&
             data
               .filter((e) => {
@@ -43,7 +45,7 @@ function Search() {
               ))}
         </div>
 
-        {!data && <h3>No data</h3>}
+        {!data && !error && <h3>No data</h3>}
       </div>
       <Footer />
     </div>

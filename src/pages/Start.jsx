@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { ClapSpinner } from "react-spinners-kit";
 import { TimelineMax, Power3 } from "gsap";
+import Snowfall from "react-snowfall";
 
 const t1 = new TimelineMax({ ease: "none", duration: 0.8 });
 
@@ -60,11 +61,13 @@ function Start() {
             navigate("/register");
           },
         },
-        1      );
+        1
+      );
   });
 
   return (
     <div className="start">
+      <Snowfall />
       <img ref={(el) => (logo = el)} src="/logo4.png" className="logo" alt="" />
       <h3 ref={(el) => (text = el)}>droplike</h3>
 

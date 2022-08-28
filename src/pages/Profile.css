@@ -168,20 +168,6 @@
   transition: 0.4s;
 }
 
-.profile > .inner {
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  min-height: 400px;
-  padding: 20px 10px;
-  margin: 20px 0;
-  min-height: 300px;
-  border-radius: 10px;
-  width: 100%;
-  max-width: 1000px;
-  background-color: var(--base2);
-}
-
 .profile .links p:current {
   color: yellow;
 }
@@ -193,6 +179,24 @@
   align-items: center;
 }
 
+.profile > .inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: 400px;
+  padding: 20px 10px;
+  margin: 20px 0;
+  min-height: 300px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 1000px;
+  background-color: var(--base2);
+}
+
+.profile > .inner .errorImg {
+  width: 50%;
+}
 @media (max-width: 801px) {
   .profile .profileNumbers {
     max-width: 100%;
