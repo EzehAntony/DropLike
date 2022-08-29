@@ -14,8 +14,8 @@
   transform: scale(1.03);
 }
  .friendContainer > .profilePicture {
-  height: 50px;
-  width: 50px;
+  height: 40px;
+  width: 40px;
   border-radius: 50%;
 }
 .friendContainer > .username {
