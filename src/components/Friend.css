@@ -11,10 +11,9 @@
 }
 
 .friendContainer:hover {
-  transform: scale(1.1);
+  transform: scale(1.03);
 }
-
-.friendContainer > .profilePicture {
+ .friendContainer > .profilePicture {
   height: 50px;
   width: 50px;
   border-radius: 50%;
@@ -35,7 +34,7 @@
 
 @media (min-width: 901px) {
   .friendContainer {
-    max-width: 400px;
+    max-width: 300px;
     margin: 15px;
   }
 }

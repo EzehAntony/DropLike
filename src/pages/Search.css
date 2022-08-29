@@ -13,7 +13,7 @@
   text-decoration: none;
   width: 100%;
 }
-.searchPage > .searchContainer {
+.searchPage .searchContainer {
   width: 100%;
   max-width: 1000px;
   padding: 10px;
@@ -61,8 +61,15 @@
 
 @media (min-width: 901px) {
   .searchResult {
+    display: flex;
     justify-content: center;
+    flex-direction: column;
     align-items: center;
     padding: 20px 0;
+    background-color: red;
+  }
+
+  .searchResult a {
+    width: 300px;
   }
 }
