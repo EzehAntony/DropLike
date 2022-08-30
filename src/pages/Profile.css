@@ -181,9 +181,8 @@
 
 .profile > .inner {
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
+  align-items: center;
   min-height: 400px;
   padding: 20px 10px;
   margin: 20px 0;
