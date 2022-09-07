@@ -51,8 +51,33 @@
   text-transform: capitalize;
 }
 
+.register .gender {
+  display: flex;
+  color: white;
+  align-items: center;
+  text-transform: capitalize;
+  font-weight: 600;
+  height: 50px;
+  width: 80%;
+  margin: 5px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 10px;
+  outline: none;
+  color: var(--white);
+  transition: 0.2s;
+}
+
+.register .gender input {
+  width: 20px;
+}
+
+.register .gender span {
+  color: var(--yellow);
+  margin-left: 20px;
+}
 .register form button {
-  background-color: var(--yellow)  ;
+  background-color: var(--yellow);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -61,7 +86,7 @@
   border: 0;
   cursor: pointer;
   margin: 10px 0;
-  color:  var(--black);
+  color: var(--black);
   border-radius: 50px;
 }
 

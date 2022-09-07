@@ -26,6 +26,7 @@ function Register() {
     lastName: "",
     username: "",
     password: "",
+    gender: "",
   });
 
   const navigate = useNavigate();
@@ -45,6 +46,7 @@ function Register() {
           lastname: input.lastName,
           username: input.username,
           password: input.password,
+          gender: input.gender,
         },
       }).then((res) => {
         setLoading(false);
@@ -153,6 +155,23 @@ function Register() {
           maxLength={15}
           required={true}
         />
+        <div className="gender">
+          gender: <span>M</span>
+          <input
+            type="radio"
+            name="gender"
+            value="m"
+            onChange={(e) => setInput({ ...input, gender: e.target.value })}
+          />
+          <span>F</span>
+          <input
+            type="radio"
+            name="gender"
+            required
+            value="f"
+            onChange={(e) => setInput({ ...input, gender: e.target.value })}
+          />
+        </div>
 
         <button type="submit" ref={(el) => (button = el)} onSubmit={submit}>
           {!loading && "Sign Up"}

@@ -24,7 +24,7 @@ function Profile() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [value, setValue] = useState([]);
-  const [profile, setProfile] = useState(null);
+  const [profile, setProfile] = useState("");
   const [post, setPost] = useState(null);
   const [success, setSuccess] = useState(false);
 
@@ -216,7 +216,11 @@ function Profile() {
       <div className="header" ref={(el) => (headerRef = el)}>
         <div ref={(el) => (profilePictureRef = el)} className="profileRing">
           <div className="profileImg">
-            <img src="/henessy.jpg" alt="" />
+            {profile && profile.gender == "male" ? (
+              <img src="/male.jpg" alt="" />
+            ) : (
+              <img src="/henessy.jpg" alt="" />
+            )}
           </div>
         </div>
         <div className="profileName">
@@ -316,3 +320,4 @@ function Profile() {
 }
 
 export default Profile;
+  

@@ -19,10 +19,7 @@ import userStore from "./User";
 
 const App = () => {
   const user = userStore((state) => state.user[0]);
-  useEffect(
-    () => window.scrollTo(0, 0),
-    [Home, Profile, Chats, Search, NewPost]
-  );
+
   return (
     <Router>
       <div className="App">
