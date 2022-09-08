@@ -95,7 +95,7 @@ function Post({ data, loading }) {
         delay: 0.6,
       });
 
-    /*     TweenMax.from(caption, 0.8, {
+    TweenMax.from(caption, 0.8, {
       opacity: 0,
       y: 20,
       delay: -0.4,
@@ -119,7 +119,7 @@ function Post({ data, loading }) {
       opacity: 0,
       y: 20,
       delay: 1.2,
-    }); */
+    }); 
   }, []);
 
   return (
