@@ -66,17 +66,19 @@
 .home > .split {
   width: 100%;
   min-width: 90%;
+  max-width: 900px;
   margin-top: 80px;
   background-color: var(--base2);
+  padding: 10px;
   border-radius: 10px;
   min-height: calc(100vh - 80px);
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
 }
 
-.home > .split  .errorImg {
+.home > .split .errorImg {
   width: 50%;
 }
 

@@ -138,6 +138,7 @@ function Profile() {
 
   useEffect(() => {
     setValue("posts");
+    console.log(profile);
   }, []);
 
   //*************UseRef*************//
@@ -216,11 +217,9 @@ function Profile() {
       <div className="header" ref={(el) => (headerRef = el)}>
         <div ref={(el) => (profilePictureRef = el)} className="profileRing">
           <div className="profileImg">
-            {profile && profile.gender == "male" ? (
-              <img src="/male.jpg" alt="" />
-            ) : (
-              <img src="/henessy.jpg" alt="" />
-            )}
+            {profile?.gender == "m" && <img src="/male.jpg" alt="" />}
+            {profile?.gender == "f" && <img src="/henessy.jpg" alt="" />}
+            {!profile && <img src="/noImg.png" alt="" />}
           </div>
         </div>
         <div className="profileName">
@@ -320,4 +319,3 @@ function Profile() {
 }
 
 export default Profile;
-  

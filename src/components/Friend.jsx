@@ -37,7 +37,13 @@ function Friend({ style, data }) {
 
   return (
     <div className="friendContainer" style={style}>
-      <img src="/girl.jpg" className="profilePicture" alt="" />
+        {userProfile?.gender == "m" && (
+          <img className="profilePicture" src="/male.jpg" alt="" />
+        )}
+        {userProfile?.gender == "f" && (
+          <img className="profilePicture" src="/henessy.jpg" alt="" />
+        )}
+        {!userProfile && <img className="profilePicture" src="/noImg.png" alt="" />}
       <div className="username">
         {userProfile && userProfile.username}
       </div>

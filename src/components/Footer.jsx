@@ -17,7 +17,9 @@ function Footer() {
       </Link>
       <Link to={`/profile/${user._id}`}>
         <div className="home-circle">
-          <img src="/girl.jpg" alt="" />
+          {user?.gender == "m" && <img src="/male.jpg" alt="" />}
+          {user?.gender == "f" && <img src="/henessy.jpg" alt="" />}
+          {!user && <img src="/noImg.png" alt="" />}
         </div>
       </Link>
 

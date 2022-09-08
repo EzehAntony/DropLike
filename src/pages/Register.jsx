@@ -37,16 +37,17 @@ function Register() {
     e.preventDefault();
     setLoading(true);
     try {
+      console.log(input);
       await axios({
         url: "https://droplikebackend.herokuapp.com/api/auth/register",
         method: "POST",
         withCredentials: true,
         data: {
+          gender: input.gender,
           firstname: input.firstName,
           lastname: input.lastName,
           username: input.username,
           password: input.password,
-          gender: input.gender,
         },
       }).then((res) => {
         setLoading(false);

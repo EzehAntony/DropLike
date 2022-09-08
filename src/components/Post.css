@@ -4,7 +4,7 @@
   border-radius: 10px;
   max-width: 800px;
   color: var(--white);
-  background-color: var(--base2);
+  background-color: var(--base3);
   padding: 20px 0 0 0;
   margin-bottom: 10px;
 }
@@ -37,17 +37,16 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  padding: 10px 0;
+  align-items: flex-start;
   color: var(--white);
 }
 
 .post .caption {
   width: 95%;
   padding: 5%;
-  font-size: 13px;
+  font-size: 15px;
+  font-weight: 600;
   text-align: left;
-  
 }
 
 .post .image {

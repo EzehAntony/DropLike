@@ -43,12 +43,13 @@ function NewPost() {
     });
   }, []);
 
-
   return (
     <div className="newPost">
       <header ref={(el) => (header = el)}>
         <div ref={(el) => (profilePicture = el)} className="profilePicture">
-          <img src="/henessy.jpg" alt="" />
+          {user?.gender == "m" && <img src="/male.jpg" alt="" />}
+          {user?.gender == "f" && <img src="/henessy.jpg" alt="" />}
+          {!user && <img src="/noImg.png" alt="" />}
         </div>
 
         <p ref={(el) => (text = el)} className="username">
@@ -64,7 +65,9 @@ function NewPost() {
         draggable={false}
       ></textarea>
 
-      <button ref={(el) => button = el} className="postButton">Post</button>
+      <button ref={(el) => (button = el)} className="postButton">
+        Post
+      </button>
 
       <Footer />
     </div>

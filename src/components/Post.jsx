@@ -125,13 +125,13 @@ function Post({ data, loading }) {
   return (
     <div ref={(el) => (post = el)} className="post">
       <div className="post-header">
-        {data && (
-          <img
-            ref={(el) => (profilePicture = el)}
-            src="/henessy.jpg"
-            className="userImage"
-          />
+        {user?.gender == "m" && (
+          <img className="userImage" src="/male.jpg" alt="" />
         )}
+        {user?.gender == "f" && (
+          <img className="userImage" src="/henessy.jpg" alt="" />
+        )}
+        {!user && <img className="userImage" src="/noImg.png" alt="" />}
 
         {userProfile && (
           <div ref={(el) => (userRef = el)} className="username">
@@ -145,14 +145,6 @@ function Post({ data, loading }) {
           {data && data.caption}
           {loading && "fetching..."}
         </div>
-        {
-          <img
-            alt="girl"
-            src="/girl.jpg"
-            ref={(el) => (image = el)}
-            className="image"
-          />
-        }
 
         <div className="action">
           {likee === "liked" ? (
