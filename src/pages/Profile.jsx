@@ -12,7 +12,7 @@ import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { TweenMax, Power3 } from "gsap";
 import { ClapSpinner } from "react-spinners-kit";
-
+import refreshStore from "../refresh";
 function Profile() {
   const { id } = useParams();
 
@@ -27,6 +27,8 @@ function Profile() {
   const [profile, setProfile] = useState("");
   const [post, setPost] = useState(null);
   const [success, setSuccess] = useState(false);
+  const refreshadd = refreshStore((state) => state.changeRefreshValue);
+  const refresh = refreshStore((state) => state.refresh);
 
   //************Fetch Functions************//
   const Fetchposts = async () => {
@@ -134,11 +136,10 @@ function Profile() {
   }, [id, success]);
   useEffect(() => {
     Fetchposts();
-  }, [id]);
+  }, [id, refresh]);
 
   useEffect(() => {
     setValue("posts");
-    console.log(profile);
   }, []);
 
   //*************UseRef*************//

@@ -1,11 +1,47 @@
-import React, { useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import "./NewPost.css";
 import Footer from "../components/Footer";
 import userStore from "../User";
 import { TweenMax } from "gsap";
+import axios from "axios";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function NewPost() {
+  const navigate = useNavigate();
   const user = userStore((state) => state.user[0]);
+
+  const [textPost, setTextPost] = useState("");
+  const [postLoading, setPostLoading] = useState(false);
+  const [postSuccess, setPostSuccess] = useState(false);
+
+  const textPostFunction = async (e) => {
+    setPostLoading(true);
+    e.preventDefault();
+    await axios({
+      url: "https://droplikebackend.herokuapp.com/api/post/create",
+      method: "POST",
+      withCredentials: true,
+      data: {
+        caption: textPost,
+        userId: user._id,
+      },
+    })
+      .then((res) => {
+        setPostLoading(false);
+        setPostSuccess(true);
+        navigate(`/home/${user._id}`);
+      })
+      .catch((err) => {
+        setPostLoading(false);
+        toast.error("Unable to post", {
+          autoClose: 2000,
+          hideProgressBar: true,
+          theme: "colored",
+        });
+      });
+  };
 
   //**************Use Ref******************//
   let header = useRef(null);
@@ -65,11 +101,16 @@ function NewPost() {
         draggable={false}
       ></textarea>
 
-      <button ref={(el) => (button = el)} className="postButton">
+      <button
+        onClick={textPostFunction}
+        ref={(el) => (button = el)}
+        className="postButton"
+      >
         Post
       </button>
 
       <Footer />
+      <ToastContainer />
     </div>
   );
 }

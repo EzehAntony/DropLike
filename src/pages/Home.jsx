@@ -3,13 +3,14 @@ import Post from "../components/Post";
 import "./Home.css";
 import Footer from "../components/Footer";
 import userStore from "../User";
+import refreshStore from "../refresh";
 import Friends from "../components/Friend";
 import useFetch from "../useFetch";
 import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import axios from "axios";
 import { useEffect } from "react";
-import { toast, Toast, ToastContainer } from "react-toastify";
+import { toast,  ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { TweenMax } from "gsap";
 import { ClapSpinner } from "react-spinners-kit";
@@ -18,6 +19,8 @@ import { Link } from "react-router-dom";
 function Home() {
   document.title = "Homepage";
   const user = userStore((state) => state.user[0]);
+  const refresh = refreshStore((state) => state.refresh);
+  const addRefresh = refreshStore((state) => state.changeRefreshValue);
 
   //**************UseState*************//
   const [loading, setLoading] = useState(false);
@@ -44,7 +47,7 @@ function Home() {
     })
       .then((res) => {
         setLoading(false);
-        setTimeline(res.data.reverse());
+        setTimeline(res.data);
         setError(false);
       })
       .catch((err) => {
@@ -102,11 +105,11 @@ function Home() {
   useEffect(() => {
     fetchData();
     setPostSuccess(false);
-  }, [postSuccess]);
+  }, [postSuccess, refresh]);
 
   useEffect(() => {
     fetchUser();
-  }, [id]);
+  }, [id, refresh]);
 
   //**************UseRef*************//
   let headerRef = useRef(null);
