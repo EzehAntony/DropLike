@@ -52,9 +52,7 @@ function Post({ data, loading }) {
           userId: user._id,
         },
       })
-        .then((res) => {
-          console.log(res.data);
-        })
+        .then((res) => {})
         .catch((err) => {
           setLikee("liked");
         });
@@ -83,22 +81,25 @@ function Post({ data, loading }) {
       setLikee("liked");
     } else {
     }
+  }, []);
+
+  useEffect(() => {
     if (data) {
       fetchUserDetail();
     } else {
     }
-  }, []);
+  }, [userProfile]);
 
   return (
     <div className="post">
       <div className="post-header">
-        {user?.gender == "m" && (
+        {userProfile?.gender === "m" && (
           <img className="userImage" src="/male.jpg" alt="" />
         )}
-        {user?.gender == "f" && (
+        {userProfile?.gender === "f" && (
           <img className="userImage" src="/henessy.jpg" alt="" />
         )}
-        {!user && <img className="userImage" src="/noImg.png" alt="" />}
+        {!userProfile && <img className="userImage" src="/noImg.png" alt="" />}
 
         {userProfile && (
           <div className="username">

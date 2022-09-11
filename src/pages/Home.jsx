@@ -88,7 +88,6 @@ function Home() {
       .then((res) => {
         setPostLoading(false);
         setPostSuccess(true);
-        console.log("done");
       })
       .catch((err) => {
         setPostLoading(false);
@@ -109,7 +108,7 @@ function Home() {
 
   useEffect(() => {
     fetchUser();
-  }, [id, refresh]);
+  }, [id, refresh, postSuccess]);
 
   //**************UseRef*************//
   let headerRef = useRef(null);

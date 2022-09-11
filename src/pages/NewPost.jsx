@@ -96,7 +96,9 @@ function NewPost() {
       <textarea
         ref={(el) => (body = el)}
         className="text"
+        value={textPost}
         placeholder={`${user.username}, what do think?`}
+        onChange={((e) => {setTextPost(e.target.value)})}
         name=""
         draggable={false}
       ></textarea>
