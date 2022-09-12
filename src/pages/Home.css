@@ -2,7 +2,7 @@
   background-color: var(--base);
   width: 100%;
   min-height: 100vh;
-  padding: 20px 5%;
+  padding: 20px 13px;
   max-width: 2000px;
   display: flex;
   flex-direction: column;
@@ -68,7 +68,7 @@
   max-width: 900px;
   margin-top: 80px;
   background-color: var(--base2);
-  padding: 20px;
+  padding: 20px 10px;
   border-radius: 10px;
   min-height: calc(100vh - 80px);
   display: flex;
@@ -94,6 +94,10 @@
 }
 
 @media (max-width: 1000px) {
+  .home .split {
+    width: 100%;
+  }
+
   .home input {
     width: 65%;
   }
