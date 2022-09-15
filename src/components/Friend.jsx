@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { Link, useParams } from "react-router-dom";
 import "./Friend.css";
-import axios  from "axios";
+import axios from "axios";
 
 // user store
 import userStore from "../User";
 
 function Friend({ style, data }) {
   //*****************UserStore*******************//
-  const user = userStore((state) => state.user[0]);
+  const user = userStore((state) => state.user);
 
   //*****************UseState*******************//
   const [userProfile, setUserProfile] = useState(null);
@@ -37,16 +37,16 @@ function Friend({ style, data }) {
 
   return (
     <div className="friendContainer" style={style}>
-        {userProfile?.gender == "m" && (
-          <img className="profilePicture" src="/male.jpg" alt="" />
-        )}
-        {userProfile?.gender == "f" && (
-          <img className="profilePicture" src="/henessy.jpg" alt="" />
-        )}
-        {!userProfile && <img className="profilePicture" src="/noImg.png" alt="" />}
-      <div className="username">
-        {userProfile && userProfile.username}
-      </div>
+      {userProfile?.gender == "m" && (
+        <img className="profilePicture" src="/male.jpg" alt="" />
+      )}
+      {userProfile?.gender == "f" && (
+        <img className="profilePicture" src="/henessy.jpg" alt="" />
+      )}
+      {!userProfile && (
+        <img className="profilePicture" src="/noImg.png" alt="" />
+      )}
+      <div className="username">{userProfile && userProfile.username}</div>
       <img src="/add.svg" className="add" alt="" />
     </div>
   );

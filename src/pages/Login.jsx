@@ -10,7 +10,6 @@ import userStore from "../User";
 import { ClapSpinner } from "react-spinners-kit";
 import Snowfall from "react-snowfall";
 
-
 const Login = () => {
   document.title = "DropLike Login";
   const navigate = useNavigate();
@@ -20,7 +19,7 @@ const Login = () => {
     password: "",
   });
 
-  const user = userStore((state) => state.user[0]);
+  const user = userStore((state) => state.user);
   const addUser = userStore((state) => state.addUser);
   const [loading, setLoading] = useState(false);
 
@@ -44,9 +43,6 @@ const Login = () => {
           autoClose: 2000,
           hideProgressBar: true,
           isLoading: false,
-          onClose: () => {
-            navigate(`/home/${user._id}`);
-          },
         });
       });
     } catch (error) {
@@ -65,6 +61,13 @@ const Login = () => {
     }
   };
 
+  useEffect(() => {
+    if (Object.keys(user).length !== 0) {
+      console.log(user)
+      navigate(`/home/${user._id}`);
+    }
+  }, [user]);
+
   let logo = useRef(null);
   let form = useRef(null);
   let button = useRef(null);
@@ -78,6 +81,7 @@ const Login = () => {
       .from(button, { opacity: 0, x: -20 }, 0.6)
       .from(text, { opacity: 0, y: 20 }, 0.8);
   }, []);
+
   return (
     <div className="login">
       <img ref={(el) => (logo = el)} src="/logo4.png" alt="" />

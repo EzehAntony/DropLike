@@ -10,7 +10,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 function NewPost() {
   const navigate = useNavigate();
-  const user = userStore((state) => state.user[0]);
+  const user = userStore((state) => state.user);
 
   const [textPost, setTextPost] = useState("");
   const [postLoading, setPostLoading] = useState(false);
@@ -98,7 +98,9 @@ function NewPost() {
         className="text"
         value={textPost}
         placeholder={`${user.username}, what do think?`}
-        onChange={((e) => {setTextPost(e.target.value)})}
+        onChange={(e) => {
+          setTextPost(e.target.value);
+        }}
         name=""
         draggable={false}
       ></textarea>

@@ -6,7 +6,7 @@ import "./Footer.css";
 import userStore from "../User";
 
 function Footer() {
-  const user = userStore((state) => state.user[0]);
+  const user = userStore((state) => state.user);
   return (
     <div className="footer">
       <Link to={`/home/${user._id}`}>

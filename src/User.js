@@ -4,10 +4,10 @@ import { persist } from "zustand/middleware";
 let userStore = create(
   persist(
     (set) => ({
-      user: [],
+      user: {},
       addUser: (user) => {
-        set((state) => ({
-          user: [user],
+        set(() => ({
+          user: user,
         }));
       },
     }),

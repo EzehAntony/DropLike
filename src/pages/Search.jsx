@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 
 function Search() {
   const [search, setSearch] = useState("");
-  const user = userStore((state) => state.user[0]);
+  const user = userStore((state) => state.user);
 
   const { data, loading, error } = useFetch(
     `https://droplikebackend.herokuapp.com/api/user/all/${user._id}`
@@ -45,7 +45,8 @@ function Search() {
               ))}
         </div>
 
-        {!data && !error && <h3>No data</h3>}
+        {!loading && !data && !error && <h3>No data</h3>}
+        {loading && <h3>Loading...</h3>}
       </div>
       <Footer />
     </div>

@@ -19,7 +19,7 @@ function Profile() {
   //********************UseStates***************//
   const [follow, setFollow] = useState("Follow");
   const [followLoading, setFollowLoading] = useState(null);
-  const user = userStore((state) => state.user[0]);
+  const user = userStore((state) => state.user);
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);

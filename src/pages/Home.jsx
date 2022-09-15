@@ -18,7 +18,7 @@ import { Link } from "react-router-dom";
 
 function Home() {
   document.title = "Homepage";
-  const user = userStore((state) => state.user[0]);
+  const user = userStore((state) => state.user);
   const refresh = refreshStore((state) => state.refresh);
   const addRefresh = refreshStore((state) => state.changeRefreshValue);
 

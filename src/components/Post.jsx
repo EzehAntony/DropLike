@@ -7,7 +7,7 @@ import refreshStore from "../refresh";
 
 function Post({ data, loading }) {
   //*****************UserStore*******************//
-  const user = userStore((state) => state.user[0]);
+  const user = userStore((state) => state.user);
   const refresh = refreshStore((state) => state.changeRefreshValue);
 
   //*****************UseState*******************//
