@@ -4,6 +4,7 @@ import axios from "axios";
 import userStore from "../User";
 import { TweenMax, TimelineLite, Power3 } from "gsap";
 import refreshStore from "../refresh";
+import { DominoSpinner } from "react-spinners-kit";
 
 function Post({ data, loading }) {
   //*****************UserStore*******************//
@@ -13,6 +14,7 @@ function Post({ data, loading }) {
   //*****************UseState*******************//
   const [userProfile, setUserProfile] = useState(null);
   const [likee, setLikee] = useState(null);
+  const [deleteLoading, setDeleteLoading] = useState(false);
 
   //*****************Fetch Function*******************//
   const fetchUserDetail = async () => {
@@ -60,6 +62,7 @@ function Post({ data, loading }) {
   };
 
   const deleteFunc = async () => {
+    setDeleteLoading(true);
     axios({
       url: `https://droplikebackend.herokuapp.com/api/post/delete/${data._id}`,
       method: "DELETE",
@@ -69,9 +72,11 @@ function Post({ data, loading }) {
       },
     })
       .then((res) => {
+        setDeleteLoading(false);
         refresh(data._id);
       })
       .catch((err) => {
+        setDeleteLoading(false);
         console.log(err);
       });
   };
@@ -131,7 +136,7 @@ function Post({ data, loading }) {
             />
           )}
           <img src="/comment.png" className="actionImg" alt="" />
-          {data?.userId == user._id && (
+          {!deleteLoading && data?.userId == user._id && (
             <img
               src="/delete.png"
               onClick={deleteFunc}
@@ -139,6 +144,8 @@ function Post({ data, loading }) {
               alt=""
             />
           )}
+
+          <DominoSpinner loading={deleteLoading} />
         </div>
       </div>
     </div>

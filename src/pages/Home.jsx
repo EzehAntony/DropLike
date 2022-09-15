@@ -10,10 +10,10 @@ import { useParams } from "react-router-dom";
 import Loading from "../components/Loading";
 import axios from "axios";
 import { useEffect } from "react";
-import { toast,  ToastContainer } from "react-toastify";
+import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { TweenMax } from "gsap";
-import { ClapSpinner } from "react-spinners-kit";
+import { DominoSpinner } from "react-spinners-kit";
 import { Link } from "react-router-dom";
 
 function Home() {
@@ -133,13 +133,13 @@ function Home() {
           />
           <button onClick={textPostFunction} className="homePost">
             {!postLoading && "Post"}
-            <ClapSpinner size={15} loading={postLoading} />
+            <DominoSpinner size={15} loading={postLoading} />
           </button>
         </div>
       </header>
 
       <div className="split">
-        {<ClapSpinner loading={loading} />}
+        {<DominoSpinner loading={loading} />}
         {timeline?.map((post, index) => (
           <Post data={post} key={index} />
         ))}

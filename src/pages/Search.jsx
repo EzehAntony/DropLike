@@ -6,6 +6,8 @@ import { useState } from "react";
 import useFetch from "../useFetch";
 import { useEffect } from "react";
 import userStore from "../User";
+import { DominoSpinner } from "react-spinners-kit";
+
 import { Link } from "react-router-dom";
 
 function Search() {
@@ -46,7 +48,7 @@ function Search() {
         </div>
 
         {!loading && !data && !error && <h3>No data</h3>}
-        {loading && <h3>Loading...</h3>}
+        {loading && <DominoSpinner/>}
       </div>
       <Footer />
     </div>

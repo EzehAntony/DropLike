@@ -11,7 +11,7 @@ import "react-toastify/dist/ReactToastify.css";
 //import axios (lib to fetch data)
 import axios from "axios";
 import { TweenMax, Power3 } from "gsap";
-import { ClapSpinner } from "react-spinners-kit";
+import { ClapSpinner, DominoSpinner } from "react-spinners-kit";
 import refreshStore from "../refresh";
 function Profile() {
   const { id } = useParams();
@@ -229,7 +229,7 @@ function Profile() {
         <div ref={(el) => (usernameRef = el)} className="profileUsername">
           {profile && `@${profile.username} `}
           {followLoading && "Loading..."}
-          {loading && "fetching..."}
+          {loading && <DominoSpinner />}
         </div>
 
         <div className="profileNumbers">

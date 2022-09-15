@@ -109,10 +109,10 @@ function Register() {
           minLength={5}
           value={input.firstName}
           onChange={(e) =>
-            setInput({
-              ...input,
+            setInput((prev) => ({
+              ...prev,
               firstName: e.target.value.toLowerCase().trim(),
-            })
+            }))
           }
           required={true}
         />
@@ -123,10 +123,10 @@ function Register() {
           maxLength={15}
           minLength={3}
           onChange={(e) =>
-            setInput({
-              ...input,
+            setInput((prev) => ({
+              ...prev,
               lastName: e.target.value.toLowerCase().trim(),
-            })
+            }))
           }
           required={true}
         />
@@ -138,10 +138,10 @@ function Register() {
           minLength={5}
           maxLength={20}
           onChange={(e) =>
-            setInput({
-              ...input,
+            setInput((prev) => ({
+              ...prev,
               username: e.target.value.toLowerCase().trim(),
-            })
+            }))
           }
           required={true}
         />
@@ -152,7 +152,12 @@ function Register() {
           placeholder="password"
           value={input.password}
           minLength={5}
-          onChange={(e) => setInput({ ...input, password: e.target.value })}
+          onChange={(e) =>
+            setInput((prev) => ({
+              ...prev,
+              password: e.target.value.toLowerCase().trim(),
+            }))
+          }
           maxLength={15}
           required={true}
         />
@@ -162,7 +167,9 @@ function Register() {
             type="radio"
             name="gender"
             value="m"
-            onChange={(e) => setInput({ ...input, gender: e.target.value })}
+            onChange={(e) =>
+              setInput((prev) => ({ ...prev, gender: e.target.value }))
+            }
           />
           <span>F</span>
           <input
@@ -170,7 +177,9 @@ function Register() {
             name="gender"
             required
             value="f"
-            onChange={(e) => setInput({ ...input, gender: e.target.value })}
+            onChange={(e) =>
+              setInput((prev) => ({ ...prev, gender: e.target.value }))
+            }
           />
         </div>
 
