@@ -6,6 +6,8 @@ import { useState } from "react";
 import userStore from "../User";
 import { useEffect } from "react";
 import Comments from "../components/Comments";
+import Footer from "../components/Footer";
+import { ClapSpinner } from "react-spinners-kit";
 
 function Post() {
   //  UseState
@@ -13,6 +15,10 @@ function Post() {
   const [userProfile, setUserProfile] = useState("");
   const [postLoading, setPostLoading] = useState("");
   const [postError, setPostError] = useState("");
+  const [input, setinput] = useState("");
+  const [commentLoading, setCommentLoading] = useState(false);
+  const [commentError, setCommentError] = useState("");
+  const [increment, setIncrement] = useState(0);
 
   // params
 
@@ -60,15 +66,37 @@ function Post() {
       });
   };
 
+  const commentFunc = () => {
+    setCommentLoading(true);
+    setCommentError(false);
+    axios({
+      url: `https://droplikebackend.herokuapp.com/api/post/comment/${id}`,
+      method: "PUT",
+      withCredentials: true,
+      data: {
+        userId: user._id,
+        comment: input,
+      },
+    })
+      .then((res) => {
+        setCommentLoading(false);
+        setCommentError(false);
+        setIncrement(increment + 1);
+        setinput("");
+      })
+      .catch((err) => {
+        setCommentLoading(false);
+        setCommentError(true);
+      });
+  };
   //useEffect
 
   useEffect(() => {
     fetchPost();
-  }, []);
+  }, [increment]);
 
   useEffect(() => {
     if (post) {
-      console.log(post);
       fetchUser();
     }
   }, [post]);
@@ -109,15 +137,25 @@ function Post() {
       </div>
 
       <div className="commentSection">
+        <textarea
+          value={input}
+          onChange={(e) => {
+            setinput(e.target.value);
+          }}
+          name="comment"
+          maxLength={500}
+          placeholder="Comment here"
+        ></textarea>
+        <button onClick={commentFunc}>
+          <ClapSpinner size={20} frontColor={"#fff"} loading={commentLoading} />
+          {!commentLoading && "Post"}
+        </button>
         <h3>comments</h3>
-        <Comments />
-        <Comments />
-        <Comments />
-        <Comments />
-        <Comments />
-        <Comments />
-
+        {post &&
+          post.comments.map((p, index) => <Comments data={p} key={index} />)}
       </div>
+
+      <Footer />
     </div>
   );
 }

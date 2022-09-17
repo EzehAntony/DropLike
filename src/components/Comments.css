@@ -9,10 +9,10 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  margin: 20px;
+  margin: 10px;
 }
 
 .comments:nth-child(odd) {
-  margin-left: calc(20% - 20px);
+  margin-left: calc(20% - 10px);
   background: var(--base4);
 }

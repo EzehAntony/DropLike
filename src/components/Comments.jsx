@@ -1,8 +1,8 @@
 import React from "react";
 import "./Comments.css";
 
-function Comments() {
-  return <div className="comments">You are very pretty, damn!</div>;
+function Comments({ data }) {
+  return <div className="comments">{data}</div>;
 }
 
 export default Comments;
