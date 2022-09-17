@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 import "./Post.css";
 import axios from "axios";
 import userStore from "../User";
@@ -7,7 +8,8 @@ import refreshStore from "../refresh";
 import { DominoSpinner } from "react-spinners-kit";
 
 function Post({ data, loading }) {
-  //*****************UserStore*******************//
+  const navigate = useNavigate();
+  //*****************UserStore******************//
   const user = userStore((state) => state.user);
   const refresh = refreshStore((state) => state.changeRefreshValue);
 
@@ -16,7 +18,7 @@ function Post({ data, loading }) {
   const [likee, setLikee] = useState(null);
   const [deleteLoading, setDeleteLoading] = useState(false);
 
-  //*****************Fetch Function*******************//
+  //***********Fetch Function***************//
   const fetchUserDetail = async () => {
     await axios({
       method: "POST",
@@ -30,7 +32,7 @@ function Post({ data, loading }) {
     });
   };
 
-  //*********************Like Function***********************//
+  //************Like Function*****************//
   const likeFunc = async () => {
     if (likee == "liked") {
       setLikee("unliked");
@@ -80,6 +82,11 @@ function Post({ data, loading }) {
         console.log(err);
       });
   };
+
+  const commentFunc = async () => {
+    navigate(`/postDetail/${data._id} `);
+  };
+
   //*****************UseEffect*******************//
   useEffect(() => {
     if (data?.likes.includes(user._id)) {
@@ -135,7 +142,12 @@ function Post({ data, loading }) {
               alt=""
             />
           )}
-          <img src="/comment.png" className="actionImg" alt="" />
+          <img
+            src="/comment.png"
+            onClick={commentFunc}
+            className="actionImg"
+            alt=""
+          />
           {!deleteLoading && data?.userId == user._id && (
             <img
               src="/delete.png"

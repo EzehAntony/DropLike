@@ -63,7 +63,7 @@ const Login = () => {
 
   useEffect(() => {
     if (Object.keys(user).length !== 0) {
-      console.log(user)
+      console.log(user);
       navigate(`/home/${user._id}`);
     }
   }, [user]);
@@ -113,7 +113,7 @@ const Login = () => {
           required={true}
         />
         <button ref={(el) => (button = el)} type="submit">
-          <ClapSpinner size={20} loading={loading} />
+          <ClapSpinner size={20} frontColor={"#0092c6"} loading={loading} />
           {!loading && "Login"}
         </button>
         <h3 ref={(el) => (text = el)}>

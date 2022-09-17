@@ -1,0 +1,18 @@
+.comments {
+  color: white;
+  min-height: 50px;
+  width: 80%;
+  padding: 20px;
+  margin: 0 auto;
+  background-color: var(--base3);
+  border-radius: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 20px;
+}
+
+.comments:nth-child(odd) {
+  margin-left: calc(20% - 20px);
+  background: var(--base4);
+}

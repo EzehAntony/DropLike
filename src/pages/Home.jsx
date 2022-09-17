@@ -139,7 +139,7 @@ function Home() {
       </header>
 
       <div className="split">
-        {<DominoSpinner loading={loading} />}
+        {<DominoSpinner color={'#00ff89'} loading={loading} />}
         {timeline?.map((post, index) => (
           <Post data={post} key={index} />
         ))}
