@@ -66,4 +66,7 @@
   cursor: pointer;
   max-width: 900px;
   font-weight: 600;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

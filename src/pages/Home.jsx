@@ -13,7 +13,7 @@ import { useEffect } from "react";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { TweenMax } from "gsap";
-import { DominoSpinner } from "react-spinners-kit";
+import { DominoSpinner, ClapSpinner } from "react-spinners-kit";
 import { Link } from "react-router-dom";
 
 function Home() {
@@ -133,7 +133,7 @@ function Home() {
           />
           <button onClick={textPostFunction} className="homePost">
             {!postLoading && "Post"}
-            <DominoSpinner size={15} loading={postLoading} />
+            <ClapSpinner size={15} frontColor={"black"} loading={postLoading} />
           </button>
         </div>
       </header>

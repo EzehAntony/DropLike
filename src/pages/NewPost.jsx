@@ -7,6 +7,7 @@ import { TweenMax } from "gsap";
 import axios from "axios";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { ClapSpinner } from "react-spinners-kit";
 
 function NewPost() {
   const navigate = useNavigate();
@@ -110,7 +111,9 @@ function NewPost() {
         ref={(el) => (button = el)}
         className="postButton"
       >
-        Post
+        <ClapSpinner frontColor={"black"} loading={postLoading} />
+
+        {!postLoading && "Post"}
       </button>
 
       <Footer />
