@@ -5,7 +5,7 @@ import axios from "axios";
 import userStore from "../User";
 import { TweenMax, TimelineLite, Power3 } from "gsap";
 import refreshStore from "../refresh";
-import { DominoSpinner } from "react-spinners-kit";
+import { ClapSpinner, DominoSpinner } from "react-spinners-kit";
 
 function Post({ data, loading }) {
   const navigate = useNavigate();
@@ -157,7 +157,7 @@ function Post({ data, loading }) {
             />
           )}
 
-          <DominoSpinner loading={deleteLoading} />
+          <ClapSpinner size={16} loading={deleteLoading} />
         </div>
       </div>
     </div>
