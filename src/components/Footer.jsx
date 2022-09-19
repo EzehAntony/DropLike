@@ -24,10 +24,10 @@ function Footer() {
       </Link>
 
       <Link to="/newpost">
-        <img src="/add.svg" alt="" />
+        <img src="/add.svg" className="addimg" alt="" />
       </Link>
-      <Link to="/home">
-        <img src="/add.svg" alt="" />
+      <Link to="/logout">
+        <img src="/logout.svg" alt="" />
       </Link>
     </div>
   );

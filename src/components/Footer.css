@@ -19,6 +19,13 @@
   -webkit-user-select: none;
 }
 
+.footer .addimg {
+  width: 65px;
+  padding: 0 15px;
+  cursor: pointer;
+  -webkit-user-select: none;
+}
+
 .footer .home-circle {
   height: 55px;
   width: 55px;
@@ -28,6 +35,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  object-fit: cover;
 
 }
 
@@ -35,7 +43,6 @@
   border-radius: 50%;
   width: 150%;
   object-fit: cover;
-
 }
 
 @media (min-width: 801px) {

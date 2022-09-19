@@ -16,6 +16,7 @@ import Chats from "./pages/Chats";
 import Search from "./pages/Search";
 import NewPost from "./pages/NewPost";
 import Post from "./pages/Post";
+import Logout from "./pages/Logout";
 import userStore from "./User";
 
 const App = () => {
@@ -39,6 +40,7 @@ const App = () => {
           <Route path={"/chats"} element={<Chats />} />
           <Route path={"/newpost"} element={<NewPost />} />
           <Route path={"/postDetail/:id"} element={<Post />} />
+          <Route path={"/logout"} element={<Logout />} />
         </Routes>
       </div>
     </Router>

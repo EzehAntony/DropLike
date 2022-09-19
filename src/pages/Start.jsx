@@ -6,28 +6,19 @@ import "react-toastify/dist/ReactToastify.css";
 import { ClapSpinner } from "react-spinners-kit";
 import { TimelineMax, Power3 } from "gsap";
 import Snowfall from "react-snowfall";
+import userStore from "../User";
 
 const t1 = new TimelineMax({ ease: "none", duration: 0.8 });
 
 function Start() {
   document.title = "DropLike Welcome!";
+
   const navigate = useNavigate();
 
+  const addUser = userStore((state) => state.addUser);
   useEffect(() => {
-    /*     toast.warning(
-      "Welcome",
-      {
-        theme: "colored",
-        closeButton: false,
-        onClose: () => {
-          navigate("/register");
-        },
-        autoClose: 1500,
-        icon: "",
-      },
-      []
-    ); */
-  });
+    addUser("");
+  }, []);
 
   //**************UseRef**************//
 

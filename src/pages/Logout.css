@@ -1,0 +1,92 @@
+.logout {
+  min-height: 100vh;
+  background-color: var(--base);
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 50px;
+}
+
+.logout .minProfile {
+  max-height: 150px;
+  border-radius: 10px;
+  background-color: var(--base2);
+  width: 90%;
+  margin: 20px auto;
+  display: flex;
+  padding: 15px 0;
+}
+
+.logout .minProfile .left {
+  width: 20%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logout .minProfile .left img {
+  width: 70%;
+  border-radius: 50%;
+}
+
+.logout .minProfile .right {
+  width: 80%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 0 0 5%;
+}
+
+.logout .minProfile .right h2 {
+  text-transform: capitalize;
+  color: white;
+  font-size: 18px;
+  padding: 0 0 20px 0;
+}
+
+.logout .minProfile .right h3 {
+  color: var(--base4);
+  font-size: 15px;
+}
+
+.logout ul {
+  background-color: var(--base2);
+  width: 90%;
+}
+.logout li {
+  height: 90px;
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logout ul li .left {
+  width: 20%;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.logout ul li .left img {
+  width: 25%;
+  border-radius: 50%;
+}
+
+.logout ul li .right {
+  width: 80%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 0 0 5%;
+  color: white;
+  font-weight: 700;
+  font-size: 15px;
+}
