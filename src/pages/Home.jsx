@@ -119,6 +119,7 @@ function Home() {
       y: -20,
       opacity: 0,
     });
+
   }, []);
 
   return (
@@ -145,6 +146,11 @@ function Home() {
         ))}
         {error && <img className="errorImg" src="/404.svg" />}
         {timeline?.length < 1 && (
+          <Link to={"/NewPost"}>
+            <button className="addPost">Make a post</button>
+          </Link>
+        )}
+        {profile?.followers.length < 1 && (
           <Link to={"/NewPost"}>
             <button className="addPost">Make a post</button>
           </Link>

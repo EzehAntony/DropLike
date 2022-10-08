@@ -185,7 +185,6 @@ function Register() {
 
         <button type="submit" ref={(el) => (button = el)} onSubmit={submit}>
           {!loading && "Sign Up"}
-          <ClapSpinner size={20} frontColor={"#fff"} loading={loading} />
           <ClapSpinner size={15} loading={loading} />
         </button>
         <h3 ref={(el) => (text = el)}>

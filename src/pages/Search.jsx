@@ -36,7 +36,7 @@ function Search() {
               .filter((e) => {
                 if (search == "") {
                   return e;
-                } else if (e.includes(search)) {
+                } else if (data.includes(search)) {
                   return e;
                 }
               })
