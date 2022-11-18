@@ -11,119 +11,119 @@ import { ClapSpinner } from "react-spinners-kit";
 import Snowfall from "react-snowfall";
 
 const Login = () => {
-  document.title = "DropLike Login";
-  const navigate = useNavigate();
+    document.title = "DropLike Login";
+    const navigate = useNavigate();
 
-  const [inputValue, setInputValue] = useState({
-    username: "",
-    password: "",
-  });
+    const [inputValue, setInputValue] = useState({
+        username: "",
+        password: "",
+    });
 
-  const user = userStore((state) => state.user);
-  const addUser = userStore((state) => state.addUser);
-  const [loading, setLoading] = useState(false);
+    const user = userStore((state) => state.user);
+    const addUser = userStore((state) => state.addUser);
+    const [loading, setLoading] = useState(false);
 
-  const submit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    try {
-      await axios({
-        url: "https://droplikebackend.herokuapp.com/api/auth/login",
-        method: "POST",
-        withCredentials: true,
-        data: {
-          username: inputValue.username,
-          password: inputValue.password,
-        },
-      }).then((res) => {
-        setLoading(false);
-        addUser(res.data);
-        toast.success("Logged In", {
-          theme: "colored",
-          autoClose: 2000,
-          hideProgressBar: true,
-          isLoading: false,
-        });
-      });
-    } catch (error) {
-      setLoading(false);
-      let message = "";
-      if (error.response.data) {
-        message = error.response.data;
-      } else {
-        message = error.message;
-      }
-      toast.error(message, {
-        autoClose: 3000,
-        hideProgressBar: true,
-        theme: "colored",
-      });
-    }
-  };
+    const submit = async (e) => {
+        e.preventDefault();
+        setLoading(true);
+        try {
+            await axios({
+                url: "https://droplikebackend.herokuapp.com/api/auth/login",
+                method: "POST",
+                withCredentials: true,
+                data: {
+                    username: inputValue.username,
+                    password: inputValue.password,
+                },
+            }).then((res) => {
+                setLoading(false);
+                addUser(res.data);
+                toast.success("Logged In", {
+                    theme: "colored",
+                    autoClose: 2000,
+                    hideProgressBar: true,
+                    isLoading: false,
+                });
+            });
+        } catch (error) {
+            setLoading(false);
+            let message = "";
+            if (error.response.data) {
+                message = error.response.data;
+            } else {
+                message = error.message;
+            }
+            toast.error(message, {
+                autoClose: 3000,
+                hideProgressBar: true,
+                theme: "colored",
+            });
+        }
+    };
 
-  useEffect(() => {
-    if (Object.keys(user).length !== 0) {
-      console.log(user);
-      navigate(`/home/${user._id}`);
-    }
-  }, [user]);
+    useEffect(() => {
+        if (Object.keys(user).length !== 0) {
+            console.log(user);
+            navigate(`/home/${user._id}`);
+        }
+    }, [user]);
 
-  let logo = useRef(null);
-  let form = useRef(null);
-  let button = useRef(null);
-  let text = useRef(null);
-  let input = useRef(null);
-  const t1 = new TimelineLite({ duration: 0.8, ease: Power3.easeIn });
+    let logo = useRef(null);
+    let form = useRef(null);
+    let button = useRef(null);
+    let text = useRef(null);
+    let input = useRef(null);
+    const t1 = new TimelineLite({ duration: 0.8, ease: Power3.easeIn });
 
-  useEffect(() => {
-    t1.from(logo, { y: -20, opacity: 0 }, 0.2)
-      .from(form, { y: 20, opacity: 0 }, 0.4)
-      .from(button, { opacity: 0, x: -20 }, 0.6)
-      .from(text, { opacity: 0, y: 20 }, 0.8);
-  }, []);
+    useEffect(() => {
+        t1.from(logo, { y: -20, opacity: 0 }, 0.2)
+            .from(form, { y: 20, opacity: 0 }, 0.4)
+            .from(button, { opacity: 0, x: -20 }, 0.6)
+            .from(text, { opacity: 0, y: 20 }, 0.8);
+    }, []);
 
-  return (
-    <div className="login">
-      <img ref={(el) => (logo = el)} src="/logo4.png" alt="" />
-      <form ref={(el) => (form = el)} onSubmit={submit}>
-        <input
-          autoComplete="true"
-          type="text"
-          placeholder="username"
-          value={inputValue.username}
-          onChange={(e) =>
-            setInputValue((prev) => ({
-              ...inputValue,
-              username: e.target.value,
-            }))
-          }
-          required={true}
-        />
-        <input
-          type="password"
-          autoComplete="true"
-          placeholder="password"
-          value={inputValue.password}
-          onChange={(e) =>
-            setInputValue((prev) => ({
-              ...inputValue,
-              password: e.target.value,
-            }))
-          }
-          required={true}
-        />
-        <button ref={(el) => (button = el)} type="submit">
-          <ClapSpinner size={20} frontColor={"#0092c6"} loading={loading} />
-          {!loading && "Login"}
-        </button>
-        <h3 ref={(el) => (text = el)}>
-          Don't have an account? <Link to="/register">Register</Link>
-        </h3>
-      </form>
-      <Snowfall />
-      <ToastContainer />
-    </div>
-  );
+    return (
+        <div className="login">
+            <img ref={(el) => (logo = el)} src="/logo4.png" alt="" />
+            <form ref={(el) => (form = el)} onSubmit={submit}>
+                <input
+                    autoComplete="true"
+                    type="text"
+                    placeholder="username"
+                    value={inputValue.username}
+                    onChange={(e) =>
+                        setInputValue((prev) => ({
+                            ...inputValue,
+                            username: e.target.value.toLowerCase(),
+                        }))
+                    }
+                    required={true}
+                />
+                <input
+                    type="password"
+                    autoComplete="true"
+                    placeholder="password"
+                    value={inputValue.password}
+                    onChange={(e) =>
+                        setInputValue((prev) => ({
+                            ...inputValue,
+                            password: e.target.value.toLowerCase(),
+                        }))
+                    }
+                    required={true}
+                />
+                <button ref={(el) => (button = el)} type="submit">
+                    <ClapSpinner size={20} frontColor={"#0092c6"} loading={loading} />
+                    {!loading && "Login"}
+                </button>
+                <h3 ref={(el) => (text = el)}>
+                    Don't have an account? <Link to="/register">Register</Link>
+                </h3>
+            </form>
+            <Snowfall />
+            <ToastContainer />
+        </div>
+    );
 };
 
 export default Login;
